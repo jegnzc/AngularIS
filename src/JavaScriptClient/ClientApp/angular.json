@@ -72,8 +72,8 @@
               "browserTarget": "JavaScriptClient:build:production"
             },
             "development": {
-              "browserTarget": "JavaScriptClient:build:development"
-              //"proxyConfig": "proxy.conf.js"
+              "browserTarget": "JavaScriptClient:build:development",
+              "proxyConfig": "proxy.conf.js"
             }
           },
           "defaultConfiguration": "development"
