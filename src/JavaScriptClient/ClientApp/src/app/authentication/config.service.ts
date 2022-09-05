@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
@@ -8,13 +9,14 @@ import { catchError, retry } from 'rxjs/operators';
 export interface Test {
   data: string;
 }
+const httpOptions = {
+  headers: new HttpHeaders({
+    'X-CSRF': '1',
+  })
+};
 
 @Injectable()
 export class AuthService {
-  private headers = {
-    "X-CSRF": "1"
-  };
-
   constructor(private http: HttpClient) { }
 
   login() {
@@ -30,7 +32,7 @@ export class AuthService {
   }
 
   getUserData() {
-    return this.http.get<any>("/bff/user")
+    return this.http.get<any>("/bff/user", httpOptions)
       .pipe(
         retry(3), // retry a failed request up to 3 times
         catchError(this.handleError) // then handle the error a

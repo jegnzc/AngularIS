@@ -10,7 +10,6 @@ import { Test, AuthService } from './authentication/config.service';
   providers: [AuthService]
 })
 export class AppComponent implements OnInit {
-  test: any;
   error: any;
   userClaims: any;
   title = 'ClientApp';
@@ -19,24 +18,11 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    var req = new Request("/bff/user", {
-      headers: new Headers({
-        "X-CSRF": "1",
-      }),
+    this.authorize.getUserData().subscribe({
+      next: (test: any) => this.userClaims = { ...test }, // success path
+      error: error => this.error = error, // error path
     });
-
-    try {
-      var resp = await fetch(req);
-      if (resp.ok) {
-        userClaims = await resp.json();
-
-        log("user logged in", userClaims);
-      } else if (resp.status === 401) {
-        log("user not logged in");
-      }
-    } catch (e) {
-      log("error checking user status");
-    }
+    console.log(this.userClaims);
   }
 
   logout() {
