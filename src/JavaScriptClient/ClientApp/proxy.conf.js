@@ -10,6 +10,7 @@ const PROXY_CONFIG = [
     context: [
       "/test",
       "/bff",
+      "/signin-oidc",
     ],
     target: target,
     secure: false,

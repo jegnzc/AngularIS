@@ -76,11 +76,13 @@ public static class Config
 
                 AllowedGrantTypes = GrantTypes.Code,
 
+                //AllowedCorsOrigins = new string[] {"https://localhost:5003", "https://localhost:5004"},
+
                 // where to redirect to after login
-                RedirectUris = { "https://localhost:5003/signin-oidc" },
+                RedirectUris = { "https://localhost:5004/signin-oidc" },
 
                 // where to redirect to after logout
-                PostLogoutRedirectUris = { "https://localhost:5003/signout-callback-oidc" },
+                PostLogoutRedirectUris = { "https://localhost:5004/signout-callback-oidc" },
 
                 AllowedScopes = new List<string>
                 {

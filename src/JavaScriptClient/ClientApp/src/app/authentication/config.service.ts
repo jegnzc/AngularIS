@@ -10,11 +10,27 @@ export interface Test {
 }
 
 @Injectable()
-export class ConfigService {
+export class AuthService {
+  private headers = {
+    "X-CSRF": "1"
+  };
+
   constructor(private http: HttpClient) { }
 
   login() {
-    return this.http.get<Test>("https://localhost:5004/bff/login")
+    window.location.href = "/bff/login";
+  }
+
+  logout() {
+    return this.http.get<Test>("/bff/login")
+      .pipe(
+        retry(3), // retry a failed request up to 3 times
+        catchError(this.handleError) // then handle the error a
+      );
+  }
+
+  getUserData() {
+    return this.http.get<any>("/bff/user")
       .pipe(
         retry(3), // retry a failed request up to 3 times
         catchError(this.handleError) // then handle the error a
