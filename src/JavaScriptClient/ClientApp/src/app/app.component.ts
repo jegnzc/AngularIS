@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Test, AuthService } from './authentication/config.service';
+import { UserClaim, AuthService } from './authentication/config.service';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +10,9 @@ import { Test, AuthService } from './authentication/config.service';
   providers: [AuthService]
 })
 export class AppComponent implements OnInit {
+
   error: any;
-  userClaims: string = "";
+  userClaims: UserClaim[] = [];
   title = 'ClientApp';
 
   constructor(private authorize: AuthService, private router: Router) {
@@ -19,14 +20,17 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.authorize.getUserData().subscribe({
-      next: (userClaims: any) => console.log(userClaims), // success path
+      next: (userClaims: UserClaim[]) => this.userClaims = userClaims, // success path
       error: error => this.error = error, // error path
     });
-    console.log(this.userClaims);
   }
 
   logout() {
-    this.authorize.login();
+    if (this.userClaims) {
+      window.location.href = this.userClaims.find(x => x.type == "bff:logout_url")?.value!;
+    } else {
+      window.location.href = "/bff/logout";
+    }
   }
 
   login() {

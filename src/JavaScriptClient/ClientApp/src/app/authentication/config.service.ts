@@ -4,11 +4,13 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 
 import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { catchError, map, retry } from 'rxjs/operators';
 
-export interface Test {
-  data: string;
+export interface UserClaim {
+  type: string;
+  value: string;
 }
+
 const httpOptions = {
   headers: new HttpHeaders({
     'X-CSRF': '1',
@@ -23,16 +25,11 @@ export class AuthService {
     window.location.href = "/bff/login";
   }
 
-  logout() {
-    return this.http.get<Test>("/bff/login")
-      .pipe(
-        retry(3), // retry a failed request up to 3 times
-        catchError(this.handleError) // then handle the error a
-      );
+  logout(logoutUrl: string) {
   }
 
   getUserData() {
-    return this.http.get<string>("/bff/user", httpOptions)
+    return this.http.get<UserClaim[]>("/bff/user", httpOptions)
       .pipe(
         retry(3), // retry a failed request up to 3 times
         catchError(this.handleError) // then handle the error a

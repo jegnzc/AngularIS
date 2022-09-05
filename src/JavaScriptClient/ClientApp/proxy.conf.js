@@ -11,6 +11,7 @@ const PROXY_CONFIG = [
       "/test",
       "/bff",
       "/signin-oidc",
+      "/signout-callback-oidc",
     ],
     target: target,
     secure: false,
