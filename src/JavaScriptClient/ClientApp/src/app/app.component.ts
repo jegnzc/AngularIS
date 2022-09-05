@@ -10,12 +10,11 @@ import { UserClaim, AuthService } from './authentication/config.service';
   providers: [AuthService]
 })
 export class AppComponent implements OnInit {
-
   error: any;
   userClaims: UserClaim[] = [];
   title = 'ClientApp';
 
-  constructor(private authorize: AuthService, private router: Router) {
+  constructor(private authorize: AuthService) {
   }
 
   ngOnInit() {
@@ -35,10 +34,5 @@ export class AppComponent implements OnInit {
 
   login() {
     this.authorize.login();
-    //this.authorize.login()
-    //  .subscribe({
-    //    next: (test: Test) => this.test = { ...test }, // success path
-    //    error: error => this.error = error, // error path
-    //  }));
   }
 }

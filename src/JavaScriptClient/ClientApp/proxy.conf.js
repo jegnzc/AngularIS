@@ -8,6 +8,7 @@ const target = 'https://localhost:5003';
 const PROXY_CONFIG = [
   {
     context: [
+      "/",
       "/test",
       "/bff",
       "/signin-oidc",
