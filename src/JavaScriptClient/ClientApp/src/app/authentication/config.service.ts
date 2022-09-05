@@ -32,7 +32,7 @@ export class AuthService {
   }
 
   getUserData() {
-    return this.http.get<any>("/bff/user", httpOptions)
+    return this.http.get<string>("/bff/user", httpOptions)
       .pipe(
         retry(3), // retry a failed request up to 3 times
         catchError(this.handleError) // then handle the error a

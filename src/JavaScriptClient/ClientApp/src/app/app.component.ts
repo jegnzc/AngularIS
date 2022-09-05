@@ -11,7 +11,7 @@ import { Test, AuthService } from './authentication/config.service';
 })
 export class AppComponent implements OnInit {
   error: any;
-  userClaims: any;
+  userClaims: string = "";
   title = 'ClientApp';
 
   constructor(private authorize: AuthService, private router: Router) {
@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.authorize.getUserData().subscribe({
-      next: (test: any) => this.userClaims = { ...test }, // success path
+      next: (userClaims: any) => console.log(userClaims), // success path
       error: error => this.error = error, // error path
     });
     console.log(this.userClaims);
