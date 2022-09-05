@@ -26,6 +26,7 @@ export class AppComponent implements OnInit {
   }
 
   logout() {
+    this.authorize.login();
   }
 
   login() {
