@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 
-import { Observable, throwError } from 'rxjs';
-import { catchError, map, retry } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
 
 export interface UserClaim {
   type: string;
