@@ -11,12 +11,6 @@ export interface UserClaim {
   value: string;
 }
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'X-CSRF': '1',
-  })
-};
-
 @Injectable()
 export class AuthService {
   constructor(private http: HttpClient) { }
@@ -29,11 +23,18 @@ export class AuthService {
   }
 
   getUserData() {
-    return this.http.get<UserClaim[]>("/bff/user", httpOptions)
-      .pipe(
-        retry(3), // retry a failed request up to 3 times
-        catchError(this.handleError) // then handle the error a
-      );
+    return this.http.get("/bff/user", { observe: 'response' })
+    //.pipe(
+    //  //catchError(this.handleError) // then handle the error a
+    //);
+  }
+
+  get isLoggedIn(): boolean {
+    let status: boolean;
+    status = false;
+    this.getUserData().subscribe((data: any) => console.log(data));
+
+    return status;
   }
 
   private handleError(error: HttpErrorResponse) {

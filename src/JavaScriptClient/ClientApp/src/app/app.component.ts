@@ -16,10 +16,10 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.authorize.getUserData().subscribe({
-      next: (userClaims: UserClaim[]) => this.userClaims = userClaims, // success path
-      error: error => this.error = error, // error path
-    });
+    //this.authorize.getUserData().subscribe({
+    //  next: (userClaims: UserClaim[]) => this.userClaims = userClaims, // success path
+    //  error: error => this.error = error, // error path
+    //});
   }
 
   logout() {

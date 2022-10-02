@@ -87,7 +87,7 @@ app.UseEndpoints(endpoints =>
         .AsBffApiEndpoint(requireAntiForgeryCheck: false);
 
     endpoints.MapGet("/local/identity", LocalIdentityHandler)
-        .AsBffApiEndpoint();
+        .AsBffApiEndpoint(requireAntiForgeryCheck: false);
 
     endpoints.MapRemoteBffApiEndpoint("/remote", "https://localhost:6001")
         .RequireAccessToken(Duende.Bff.TokenType.User);

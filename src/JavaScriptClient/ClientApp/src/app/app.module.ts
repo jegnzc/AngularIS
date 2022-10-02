@@ -10,6 +10,7 @@ import { MenuComponent } from './menu/menu.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
 import { MaterialExampleModule } from '../material.module';
+import { AuthService } from './authentication/authentication.service';
 
 @NgModule({
   imports: [
@@ -24,7 +25,7 @@ import { MaterialExampleModule } from '../material.module';
     NavbarComponent,
     MenuComponent
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
