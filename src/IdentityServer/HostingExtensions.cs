@@ -95,9 +95,9 @@ internal static class HostingExtensions
     {
         using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
         {
-            var configContext = serviceScope.ServiceProvider.GetRequiredService<ConfigurationDbContext>();
-            var persistedGrantContext = serviceScope.ServiceProvider.GetService<PersistedGrantDbContext>();
             var context = serviceScope.ServiceProvider.GetService<ApplicationDbContext>();
+            var persistedGrantContext = serviceScope.ServiceProvider.GetService<PersistedGrantDbContext>();
+            var configContext = serviceScope.ServiceProvider.GetRequiredService<ConfigurationDbContext>();
 
             var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
@@ -110,31 +110,18 @@ internal static class HostingExtensions
             configContext.Database.Migrate();
 
             if (!configContext.Clients.Any())
-            {
                 foreach (var client in Config.Clients)
-                {
                     configContext.Clients.Add(client.ToEntity());
-                }
-            }
 
             if (!configContext.IdentityResources.Any())
-            {
                 foreach (var resource in Config.IdentityResources)
-                {
                     configContext.IdentityResources.Add(resource.ToEntity());
-                }
-            }
 
             if (!configContext.ApiScopes.Any())
-            {
                 foreach (var resource in Config.ApiScopes)
-                {
                     configContext.ApiScopes.Add(resource.ToEntity());
-                }
-            }
 
             if (!context.Users.Any())
-            {
                 foreach (var user in Config.Users)
                 {
                     var result = userManager.CreateAsync(user, "Pass123$").Result;
@@ -150,23 +137,14 @@ internal static class HostingExtensions
                         throw new Exception(result.Errors.First().Description);
                     }
                 }
-            }
 
             if (!context.Roles.Any())
-            {
                 foreach (var role in Config.Roles)
-                {
                     context.Roles.Add(role);
-                }
-            }
 
             if (!context.UserRoles.Any())
-            {
                 foreach (var userRole in Config.UserRoles)
-                {
                     context.UserRoles.Add(userRole);
-                }
-            }
 
             configContext.SaveChanges();
             context.SaveChanges();
