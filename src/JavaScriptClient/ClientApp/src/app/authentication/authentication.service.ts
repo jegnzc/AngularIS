@@ -2,17 +2,24 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
+import { map } from "rxjs/operators";
 
-import { throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
 export interface UserClaim {
   type: string;
   value: string;
 }
+const httpOptions = {
+  headers: new HttpHeaders({
+    'X-CSRF': '1',
+  })
+};
 
 @Injectable()
 export class AuthService {
+  userClaim: UserClaim[] = [];
   constructor(private http: HttpClient) { }
 
   login() {
@@ -23,27 +30,7 @@ export class AuthService {
   }
 
   getUserData() {
-    return this.http.get<UserClaim[]>("/bff/user").pipe(
-      catchError(this.handleError)
-    );
-  }
-
-  get isLoggedIn(): boolean {
-    let isLogged = false;
-    let headers: any;
-    let response: UserClaim[];
-    this.getUserData()
-      // resp is of type `HttpResponse<Config>`
-      .subscribe(resp => {
-        // display its headers
-        const keys = resp.headers.keys();
-        headers = keys.map(key =>
-          `${key}: ${resp.headers.get(key)}`);
-
-        // access the body directly, which is typed as `Config`.
-        response = { ...resp.body! };
-      });
-    return this.isLoggedIn;
+    return this.http.get<string>("/bff/user", httpOptions);
   }
 
   private handleError(error: HttpErrorResponse) {
