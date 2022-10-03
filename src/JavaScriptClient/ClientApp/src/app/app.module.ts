@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MenuComponent } from './menu/menu.component';
 import { NavbarComponent } from './navbar/navbar.component';
-
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { MaterialExampleModule } from '../material.module';
 import { AuthService } from './authentication/authentication.service';
 import { LoginComponent } from './login/login.component';

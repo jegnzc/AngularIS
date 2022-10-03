@@ -29,7 +29,7 @@ export class AuthService {
   logout(logoutUrl: string) {
   }
 
-  getUserData() {
+  getUserData(): Observable<string> {
     return this.http.get<string>("/bff/user", httpOptions);
   }
 
