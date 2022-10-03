@@ -23,18 +23,27 @@ export class AuthService {
   }
 
   getUserData() {
-    return this.http.get("/bff/user", { observe: 'response' })
-    //.pipe(
-    //  //catchError(this.handleError) // then handle the error a
-    //);
+    return this.http.get<UserClaim[]>("/bff/user").pipe(
+      catchError(this.handleError)
+    );
   }
 
   get isLoggedIn(): boolean {
-    let status: boolean;
-    status = false;
-    this.getUserData().subscribe((data: any) => console.log(data));
+    let isLogged = false;
+    let headers: any;
+    let response: UserClaim[];
+    this.getUserData()
+      // resp is of type `HttpResponse<Config>`
+      .subscribe(resp => {
+        // display its headers
+        const keys = resp.headers.keys();
+        headers = keys.map(key =>
+          `${key}: ${resp.headers.get(key)}`);
 
-    return status;
+        // access the body directly, which is typed as `Config`.
+        response = { ...resp.body! };
+      });
+    return this.isLoggedIn;
   }
 
   private handleError(error: HttpErrorResponse) {

@@ -11,6 +11,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 
 import { MaterialExampleModule } from '../material.module';
 import { AuthService } from './authentication/authentication.service';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { AuthService } from './authentication/authentication.service';
   declarations: [
     AppComponent,
     NavbarComponent,
-    MenuComponent
+    MenuComponent,
+    LoginComponent
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
