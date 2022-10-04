@@ -11,6 +11,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { MaterialExampleModule } from '../material.module';
 import { AuthService } from './authentication/authentication.service';
 import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { LoginComponent } from './login/login.component';
     AppComponent,
     NavbarComponent,
     MenuComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

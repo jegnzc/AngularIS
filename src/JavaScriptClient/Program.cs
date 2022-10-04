@@ -52,6 +52,7 @@ builder.Services
         options.ClaimActions.MapUniqueJsonKey("favorite_color", "favorite_color");
         options.ClaimActions.MapUniqueJsonKey("offline_access", "offline_access");
         options.ClaimActions.MapUniqueJsonKey("role", "role");
+        options.ClaimActions.MapUniqueJsonKey("preferred_username", "preferred_username");
 
         options.TokenValidationParameters = new()
         {

@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
-import { map } from "rxjs/operators";
-
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { Observable, map, catchError, throwError } from 'rxjs';
+import { UserClaimKeys } from '../../services/claim-keys';
+import { BffKeys } from '../../services/bff-keys';
+import { User } from '../../models/user.model';
 
 export interface UserClaim {
   type: string;
@@ -19,18 +19,40 @@ const httpOptions = {
 
 @Injectable()
 export class AuthService {
-  userClaim: UserClaim[] = [];
+  userClaims: UserClaim[] = [];
   constructor(private http: HttpClient) { }
 
   login() {
-    window.location.href = "/bff/login";
+    window.location.href = BffKeys.LOGIN;
   }
 
-  logout(logoutUrl: string) {
+  getUserData(): Observable<UserClaim[]> {
+    return this.http.get<UserClaim[]>(BffKeys.USER, httpOptions);
   }
 
-  getUserData(): Observable<string> {
-    return this.http.get<string>("/bff/user", httpOptions);
+  logout() {
+    if (this.userClaims) {
+      window.location.href = this.userClaims.find(x => x.type == UserClaimKeys.LOGOUT_URL)?.value!;
+    } else {
+      window.location.href = BffKeys.LOGOUT;
+    }
+  }
+
+  get currentUser(): User {
+    this.getUserData().subscribe(response => {
+      console.log(response);
+      this.userClaims = response;
+    },
+      err => console.error(err)
+    );
+    const user = new User(
+      this.userClaims.find(x => x.type == UserClaimKeys.SUB)?.value!,
+      this.userClaims.find(x => x.type == UserClaimKeys.PREFERRED_USERNAME)?.value!,
+      this.userClaims.find(x => x.type == UserClaimKeys.EMAIL)?.value!,
+      this.userClaims.find(x => x.type == UserClaimKeys.ROLE)?.value!
+    );
+
+    return user;
   }
 
   private handleError(error: HttpErrorResponse) {

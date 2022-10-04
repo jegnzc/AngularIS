@@ -20,7 +20,8 @@ public static class Config
             {
                 JwtClaimTypes.Name,
                 JwtClaimTypes.Email,
-                JwtClaimTypes.Role
+                JwtClaimTypes.Role,
+                JwtClaimTypes.PreferredUserName
             }),
         };
 
