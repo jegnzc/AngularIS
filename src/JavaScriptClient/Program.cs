@@ -7,12 +7,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddControllers();
+builder.Services.AddControllersWithViews();
 
 builder.Services.AddAuthorization();
 
-builder.Services
-    .AddBff()
+builder.Services.AddBff()
     .AddRemoteApis();
 
 builder.Services
@@ -67,7 +66,7 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 
-app.UseDefaultFiles();
+app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseAuthentication();
@@ -91,9 +90,10 @@ app.UseEndpoints(endpoints =>
 
     endpoints.MapRemoteBffApiEndpoint("/remote", "https://localhost:6001")
         .RequireAccessToken(Duende.Bff.TokenType.User);
-});
 
-app.MapFallbackToFile("index.html"); ;
+    endpoints.MapFallbackToFile("/index.html");
+    //endpoints.MapFallbackToFile("../ClientApp/src/index.html");
+});
 
 app.Run();
 

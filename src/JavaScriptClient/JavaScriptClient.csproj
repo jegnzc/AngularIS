@@ -9,6 +9,7 @@
 		<SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
 		<RootNamespace>JavaScriptClient</RootNamespace>
 		<ImplicitUsings>enable</ImplicitUsings>
+		<TypeScriptJSXEmit>none</TypeScriptJSXEmit>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
