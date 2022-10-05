@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenuComponent } from './menu/menu.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MaterialExampleModule } from '../material.module';
-import { AuthService } from './authentication/authentication.service';
+import { AuthService } from '../services/authentication.service';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 

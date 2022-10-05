@@ -3,9 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Observable, map, catchError, throwError } from 'rxjs';
-import { UserClaimKeys } from '../../services/claim-keys';
-import { BffKeys } from '../../services/bff-keys';
-import { User } from '../../models/user.model';
+import { UserClaimKeys } from './claim-keys';
+import { BffKeys } from './bff-keys';
+import { User } from '../models/user.model';
+import { LocalService } from '../services/local.service';
 
 export interface UserClaim {
   type: string;
@@ -20,7 +21,7 @@ const httpOptions = {
 @Injectable()
 export class AuthService {
   userClaims: UserClaim[] = [];
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private local: LocalService) { }
 
   login() {
     window.location.href = BffKeys.LOGIN;
@@ -38,12 +39,15 @@ export class AuthService {
     }
   }
 
+  // local storage
+  // logout -> delete all
   get currentUser(): User {
     this.getUserData().subscribe(response => {
       console.log(response);
       this.userClaims = response;
     },
-      err => console.error(err)
+      err =>
+        console.error(err)
     );
     const user = new User(
       this.userClaims.find(x => x.type == UserClaimKeys.SUB)?.value!,

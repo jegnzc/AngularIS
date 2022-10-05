@@ -1,21 +1,22 @@
-import { Component } from '@angular/core';
-import { AuthService } from '../authentication/authentication.service';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/authentication.service';
+import { LocalService } from '../../services/local.service';
 
 @Component({
   selector: 'navbar-component',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent {
-  userName: string = null;
+export class NavbarComponent implements OnInit {
+  userName: string | undefined;
 
-  constructor(private authService: AuthService) {
+  constructor(private local: LocalService) {
   }
-
-  get userName(): string {
-    if (this.userName == null) {
-      return this.authService.currentUser.userName ?? "";
-    }
-    return this.userName;
+  // local storage
+  // local.service.ts
+  // local storage service
+  // secure web storage
+  ngOnInit(): void {
+    this.local.setJsonValue('session', "");
   }
 }
