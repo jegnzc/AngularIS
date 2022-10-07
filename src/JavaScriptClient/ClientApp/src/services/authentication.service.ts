@@ -42,13 +42,8 @@ export class AuthService {
   // local storage
   // logout -> delete all
   get currentUser(): User {
-    this.getUserData().subscribe(response => {
-      console.log(response);
-      this.userClaims = response;
-    },
-      err =>
-        console.error(err)
-    );
+
+    this.userClaims = this.local.getJsonData('currentUser')
     const user = new User(
       this.userClaims.find(x => x.type == UserClaimKeys.SUB)?.value!,
       this.userClaims.find(x => x.type == UserClaimKeys.PREFERRED_USERNAME)?.value!,

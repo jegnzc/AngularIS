@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../../models/user.model';
 import { AuthService } from '../../services/authentication.service';
 import { LocalService } from '../../services/local.service';
 
@@ -8,15 +9,12 @@ import { LocalService } from '../../services/local.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  userName: string | undefined;
+  user: User = new User();
 
-  constructor(private local: LocalService) {
+  constructor(private auth: AuthService) {
   }
-  // local storage
-  // local.service.ts
-  // local storage service
-  // secure web storage
+
   ngOnInit(): void {
-    this.local.setJsonValue('session', "");
+    this.user = this.auth.currentUser;
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../authentication/authentication.service';
+import { AuthService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-login',
