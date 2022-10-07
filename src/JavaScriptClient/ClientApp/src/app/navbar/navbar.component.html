@@ -1,26 +1,36 @@
-<mat-toolbar>
-  <!--<app-menu></app-menu>-->
-  <!--<button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-    <mat-icon>menu</mat-icon>
-  </button>-->
+<div style="height: 100vh;">
+  <mat-toolbar color="primary">
+    <div fxShow="true" fxHide.gt-sm="true">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
 
-  <a routerLink="/">Clínica Dental</a>
-  <span class="example-spacer"></span>
-  <ul class="flex">
-    <li class="mr-6">
-      <a class="text-black-500 hover:text-blue-800" routerLink="/">Clientes</a>
-    </li>
-    <li class="mr-6">
-      <a class="text-black-500 hover:text-blue-800" routerLink="/">Inventario</a>
-    </li>
-    <li class="mr-6">
-      <a class="text-black-500 hover:text-blue-800" routerLink="/">{{user.userName}}</a>
-    </li>
-    <ng-container *ngIf="user.userName != null">
-      <li class="mr-6">
-        <a class="text-black-500 hover:text-blue-800" routerLink="/logout">Cerrar sesión</a>
+    <a mat-button class="companyName" routerLink="/">
+      <span>Clínica dental</span>
+    </a>
+    <span class="example-spacer"></span>
+    <div fxShow="true" fxHide.lt-md="true">
+      <a mat-button routerLink="/">Clientes</a>
+      <a mat-button routerLink="/">Inventario</a>
+      <a mat-button routerLink="/">{{user.userName}}</a>
+      <a mat-button routerLink="/logout">Cerrar sesión</a>
+    </div>
 
-      </li>
-    </ng-container>
-  </ul>
-</mat-toolbar>
+  </mat-toolbar>
+  <mat-sidenav-container fxFlexFill class="example-container">
+
+    <mat-sidenav color="secondary" #sidenav fxLayout="column" mode="over" opened="false" fxHide.gt-sm="true">
+      <div fxLayout="column">
+        <a mat-button routerLink="/">Clientes</a>
+        <a mat-button routerLink="/">Inventario</a>
+        <a mat-button routerLink="/">{{user.userName}}</a>
+        <a mat-button routerLink="/logout">Cerrar sesión</a>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill>
+      <!--Awesome content-->
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+</div>

@@ -13,6 +13,12 @@ import { AuthService } from '../services/authentication.service';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { LogoutComponent } from './logout/logout.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   imports: [
@@ -20,7 +26,12 @@ import { LogoutComponent } from './logout/logout.component';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MaterialExampleModule
+    MaterialExampleModule,
+    FlexLayoutModule,
+    MatIconModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatToolbarModule
   ],
   declarations: [
     AppComponent,
