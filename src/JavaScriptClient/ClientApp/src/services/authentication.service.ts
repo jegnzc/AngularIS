@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
-import { Observable, map, catchError, throwError } from 'rxjs';
+import { Observable, map, throwError } from 'rxjs';
 import { UserClaimKeys } from './claim-keys';
 import { BffKeys } from './bff-keys';
 import { User } from '../models/user.model';
@@ -28,12 +28,39 @@ export class AuthService {
   }
 
   getUserData(): Observable<UserClaim[]> {
+    var test = this.http.get<UserClaim[]>(BffKeys.USER, httpOptions)
+      .pipe(
+        map(response => {
+          return new User(
+            response.find(x => x.type == UserClaimKeys.SUB)?.value!,
+            response.find(x => x.type == UserClaimKeys.PREFERRED_USERNAME)?.value!,
+            response.find(x => x.type == UserClaimKeys.EMAIL)?.value!,
+            response.find(x => x.type == UserClaimKeys.ROLE)?.value!
+          );
+        }));
     return this.http.get<UserClaim[]>(BffKeys.USER, httpOptions);
   }
 
+  getUser(): Observable<User> {
+    return this.http.get<UserClaim[]>(BffKeys.USER, httpOptions)
+      .pipe(
+        map(response => {
+          return new User(
+            response.find(x => x.type == UserClaimKeys.SUB)?.value!,
+            response.find(x => x.type == UserClaimKeys.PREFERRED_USERNAME)?.value!,
+            response.find(x => x.type == UserClaimKeys.EMAIL)?.value!,
+            response.find(x => x.type == UserClaimKeys.ROLE)?.value!
+          );
+        }));
+  }
+
   logout() {
+    this.userClaims = this.local.getJsonData('currentUser');
+    let logoutUrl = this.userClaims.find(x => x.type == UserClaimKeys.LOGOUT_URL)?.value!;
+    this.userClaims = [];
+    this.local.clearData();
     if (this.userClaims) {
-      window.location.href = this.userClaims.find(x => x.type == UserClaimKeys.LOGOUT_URL)?.value!;
+      window.location.href = logoutUrl;
     } else {
       window.location.href = BffKeys.LOGOUT;
     }
@@ -42,16 +69,20 @@ export class AuthService {
   // local storage
   // logout -> delete all
   get currentUser(): User {
+    this.userClaims = this.local.getJsonData('currentUser');
+    if (this.userClaims.length > 0) {
+      const user = new User(
+        this.userClaims.find(x => x.type == UserClaimKeys.SUB)?.value!,
+        this.userClaims.find(x => x.type == UserClaimKeys.PREFERRED_USERNAME)?.value!,
+        this.userClaims.find(x => x.type == UserClaimKeys.EMAIL)?.value!,
+        this.userClaims.find(x => x.type == UserClaimKeys.ROLE)?.value!
+      );
+      return user;
 
-    this.userClaims = this.local.getJsonData('currentUser')
-    const user = new User(
-      this.userClaims.find(x => x.type == UserClaimKeys.SUB)?.value!,
-      this.userClaims.find(x => x.type == UserClaimKeys.PREFERRED_USERNAME)?.value!,
-      this.userClaims.find(x => x.type == UserClaimKeys.EMAIL)?.value!,
-      this.userClaims.find(x => x.type == UserClaimKeys.ROLE)?.value!
-    );
+    }
 
-    return user;
+    return new User();
+
   }
 
   private handleError(error: HttpErrorResponse) {

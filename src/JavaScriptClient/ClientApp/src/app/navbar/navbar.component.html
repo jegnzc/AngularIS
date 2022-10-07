@@ -15,19 +15,22 @@
     <div fxShow="true" fxHide.lt-md="true">
       <a mat-button routerLink="/">Clientes</a>
       <a mat-button routerLink="/">Inventario</a>
-      <a mat-button routerLink="/">{{user.userName}}</a>
-      <a *ngIf="user.userName != null" mat-button routerLink="/logout">Cerrar sesión</a>
+      <ng-container *ngIf="user$ | async; let user">
+        <a mat-button routerLink="/">{{user.userName}}</a>
+        <a mat-button routerLink="/logout">Cerrar sesión</a>
+      </ng-container>
     </div>
 
   </mat-toolbar>
   <mat-sidenav-container fxFlexFill class="example-container">
-
     <mat-sidenav class="bg-sky-600 text-white" #sidenav fxLayout="column" mode="over" opened="false" fxHide.gt-sm="true">
       <div fxLayout="column">
         <a mat-button routerLink="/">Clientes</a>
         <a mat-button routerLink="/">Inventario</a>
-        <a mat-button routerLink="/">{{user.userName}}</a>
-        <a *ngIf="user.userName != null" mat-button routerLink="/logout">Cerrar sesión</a>
+        <ng-container *ngIf="user$ | async; let user">
+          <a mat-button routerLink="/">{{user.userName}}</a>
+          <a mat-button routerLink="/logout">Cerrar sesión</a>
+        </ng-container>
       </div>
     </mat-sidenav>
 

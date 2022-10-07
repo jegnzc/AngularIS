@@ -16,7 +16,7 @@ export class LocalService {
   }
 
   public getJsonData(key: string) {
-    return JSON.parse(localStorage.getItem(key) ?? '')
+    return JSON.parse(localStorage.getItem(key) ?? '{}')
   }
 
   public getData(key: string) {
