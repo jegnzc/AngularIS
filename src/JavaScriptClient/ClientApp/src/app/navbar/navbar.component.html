@@ -16,7 +16,7 @@
       <a mat-button routerLink="/">Clientes</a>
       <a mat-button routerLink="/">Inventario</a>
       <a mat-button routerLink="/">{{user.userName}}</a>
-      <a mat-button routerLink="/logout">Cerrar sesión</a>
+      <a *ngIf="user.userName != null" mat-button routerLink="/logout">Cerrar sesión</a>
     </div>
 
   </mat-toolbar>
@@ -27,7 +27,7 @@
         <a mat-button routerLink="/">Clientes</a>
         <a mat-button routerLink="/">Inventario</a>
         <a mat-button routerLink="/">{{user.userName}}</a>
-        <a mat-button routerLink="/logout">Cerrar sesión</a>
+        <a *ngIf="user.userName != null" mat-button routerLink="/logout">Cerrar sesión</a>
       </div>
     </mat-sidenav>
 

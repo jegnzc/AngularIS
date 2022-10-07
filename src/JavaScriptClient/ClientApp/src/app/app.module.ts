@@ -15,10 +15,6 @@ import { HomeComponent } from './home/home.component';
 import { LogoutComponent } from './logout/logout.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   imports: [
@@ -26,12 +22,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MaterialExampleModule,
     FlexLayoutModule,
-    MatIconModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatToolbarModule
+    MaterialExampleModule
   ],
   declarations: [
     AppComponent,
