@@ -15,6 +15,7 @@ import { HomeComponent } from './home/home.component';
 import { LogoutComponent } from './logout/logout.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SettingsComponent } from './settings/settings.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { SettingsComponent } from './settings/settings.component';
     LoginComponent,
     HomeComponent,
     LogoutComponent,
-    SettingsComponent
+    SettingsComponent,
+    ProfileComponent
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

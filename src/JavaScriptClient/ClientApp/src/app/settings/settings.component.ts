@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { fadeInOut } from '../../services/animations';
 
 @Component({
@@ -9,5 +9,11 @@ import { fadeInOut } from '../../services/animations';
 })
 
 export class SettingsComponent {
+  activeComponent: string = "";
+
   constructor() { }
+
+  setCurrentComponent(component:string) {
+    this.activeComponent = component;
+  }
 }
