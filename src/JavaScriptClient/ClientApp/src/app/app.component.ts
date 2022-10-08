@@ -1,24 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { UserClaim, AuthService } from '../services/authentication.service';
+import { Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  providers: [AuthService]
+  styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent{
   error: any;
   title = 'ClientApp';
-  userClaims: UserClaim[] = [];
 
-  constructor(private authorize: AuthService) {
-  }
-
-  ngOnInit() {
-    //this.authorize.getUserData().subscribe({
-    //  next: (userClaims: UserClaim[]) => this.userClaims = userClaims, // success path
-    //  error: error => this.error = error, // error path
-    //});
+  constructor() {
   }
 }

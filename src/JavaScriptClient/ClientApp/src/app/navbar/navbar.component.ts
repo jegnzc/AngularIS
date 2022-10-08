@@ -1,8 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { User } from '../../models/user.model';
 import { AuthService } from '../../services/authentication.service';
-import { Observable, catchError, map, throwError } from 'rxjs';
-import { UserClaimKeys } from '../../services/claim-keys';
+import { Observable} from 'rxjs';
 
 @Component({
   selector: 'navbar-component',

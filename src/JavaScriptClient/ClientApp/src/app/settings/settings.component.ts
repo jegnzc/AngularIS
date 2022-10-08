@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { fadeInOut } from '../../services/animations';
 
 @Component({
-  selector: 'app-settings',
+  selector: 'settings-component',
   templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.scss']
+  styleUrls: ['./settings.component.scss'],
+  animations: [fadeInOut]
 })
-export class SettingsComponent implements OnInit {
 
+export class SettingsComponent {
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }
