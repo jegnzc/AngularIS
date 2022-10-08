@@ -6,6 +6,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   exports: [
@@ -14,7 +16,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatButtonModule,
     MatButtonToggleModule,
     MatMenuModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatFormFieldModule,
+    MatInputModule,
   ]
 })
-export class MaterialExampleModule { }
+export class MatModule { }

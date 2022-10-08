@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MenuComponent } from './menu/menu.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { MaterialExampleModule } from '../material.module';
+import { MatModule } from '../material.module';
 import { AuthService } from '../services/authentication.service';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
@@ -16,6 +16,8 @@ import { LogoutComponent } from './logout/logout.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SettingsComponent } from './settings/settings.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ManageUsersComponent } from './manage-users/manage-users.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { ProfileComponent } from './profile/profile.component';
     HttpClientModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
-    MaterialExampleModule
+    MatModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   declarations: [
     AppComponent,
@@ -35,7 +39,8 @@ import { ProfileComponent } from './profile/profile.component';
     HomeComponent,
     LogoutComponent,
     SettingsComponent,
-    ProfileComponent
+    ProfileComponent,
+    ManageUsersComponent
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
