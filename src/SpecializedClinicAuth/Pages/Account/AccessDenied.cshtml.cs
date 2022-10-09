@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace IdentityServerAspNetIdentity.Pages.Account;
+namespace SpecializedClinicAuth.Pages.Account;
 
 public class AccessDeniedModel : PageModel
 {

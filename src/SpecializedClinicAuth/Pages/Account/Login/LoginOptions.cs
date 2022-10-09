@@ -1,4 +1,4 @@
-namespace IdentityServerAspNetIdentity.Pages.Login;
+namespace SpecializedClinicAuth.Pages.Account.Login;
 
 public class LoginOptions
 {

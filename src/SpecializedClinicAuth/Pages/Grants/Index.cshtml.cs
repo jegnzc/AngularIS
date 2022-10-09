@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace IdentityServerAspNetIdentity.Pages.Grants;
+namespace SpecializedClinicAuth.Pages.Grants;
 
 [SecurityHeaders]
 [Authorize]
@@ -30,7 +30,7 @@ public class Index : PageModel
     }
 
     public ViewModel View { get; set; }
-        
+
     public async Task OnGet()
     {
         var grants = await _interaction.GetAllUserGrantsAsync();

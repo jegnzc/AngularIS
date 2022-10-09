@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using IdentityServerAspNetIdentity.Models;
+using SpecializedClinicAuth.Models;
 
-namespace IdentityServerAspNetIdentity.Data;
+namespace SpecializedClinicAuth.Data;
 
 public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 {

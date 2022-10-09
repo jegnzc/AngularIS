@@ -2,14 +2,15 @@ using Duende.IdentityServer.Events;
 using Duende.IdentityServer.Models;
 using Duende.IdentityServer.Services;
 using Duende.IdentityServer.Stores;
-using IdentityServerAspNetIdentity.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using SpecializedClinicAuth.Models;
+using SpecializedClinicAuth.Pages;
 
-namespace IdentityServerAspNetIdentity.Pages.Login;
+namespace SpecializedClinicAuth.Pages.Account.Login;
 
 [SecurityHeaders]
 [AllowAnonymous]

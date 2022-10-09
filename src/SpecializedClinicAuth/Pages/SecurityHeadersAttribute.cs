@@ -5,7 +5,7 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace IdentityServerAspNetIdentity.Pages;
+namespace SpecializedClinicAuth.Pages;
 
 public class SecurityHeadersAttribute : ActionFilterAttribute
 {

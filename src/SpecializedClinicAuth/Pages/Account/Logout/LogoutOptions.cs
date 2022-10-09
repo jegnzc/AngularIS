@@ -1,4 +1,4 @@
-namespace IdentityServerAspNetIdentity.Pages.Logout;
+namespace SpecializedClinicAuth.Pages.Account.Logout;
 
 public class LogoutOptions
 {

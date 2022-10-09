@@ -1,11 +1,11 @@
 ﻿using Duende.IdentityServer.AspNetIdentity;
 using Duende.IdentityServer.Models;
-using IdentityServerAspNetIdentity.Models;
 using Microsoft.AspNetCore.DataProtection.Repositories;
 using Microsoft.AspNetCore.Identity;
+using SpecializedClinicAuth.Models;
 using System.Security.Claims;
 
-namespace IdentityServerAspNetIdentity;
+namespace SpecializedClinicAuth.Extensibility;
 
 public class CustomProfileService : ProfileService<ApplicationUser>
 {

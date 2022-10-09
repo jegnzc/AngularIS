@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace IdentityServerAspNetIdentity.Pages;
+namespace SpecializedClinicAuth.Pages;
 
 public static class Extensions
 {
@@ -18,7 +18,7 @@ public static class Extensions
     {
         var provider = context.RequestServices.GetRequiredService<IAuthenticationHandlerProvider>();
         var handler = await provider.GetHandlerAsync(context, scheme);
-        return (handler is IAuthenticationSignOutHandler);
+        return handler is IAuthenticationSignOutHandler;
     }
 
     /// <summary>

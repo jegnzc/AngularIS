@@ -1,12 +1,12 @@
-using IdentityServerAspNetIdentity.Data;
-using IdentityServerAspNetIdentity.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
+using SpecializedClinicAuth.Data;
+using SpecializedClinicAuth.Models;
 using static Duende.IdentityServer.IdentityServerConstants;
 
-namespace IdentityServer.Controllers
+namespace SpecializedClinicAuth.Controllers
 {
     [ApiController]
     [Route("localApi")]

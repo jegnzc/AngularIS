@@ -1,15 +1,16 @@
 using Duende.IdentityServer.EntityFramework.DbContexts;
 using Duende.IdentityServer.EntityFramework.Mappers;
 using IdentityModel;
-using IdentityServerAspNetIdentity.Data;
-using IdentityServerAspNetIdentity.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
+using SpecializedClinicAuth.Data;
+using SpecializedClinicAuth.Extensibility;
+using SpecializedClinicAuth.Models;
 using System.Security.Claims;
 using System.Text.Json.Serialization;
 
-namespace IdentityServerAspNetIdentity;
+namespace SpecializedClinicAuth;
 
 internal static class HostingExtensions
 {

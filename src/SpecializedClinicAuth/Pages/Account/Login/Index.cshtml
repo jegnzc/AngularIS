@@ -1,5 +1,5 @@
 @page
-@model IdentityServerAspNetIdentity.Pages.Login.Index
+@model SpecializedClinicAuth.Pages.Account.Login.Index
 
 <div class="login-page">
     <div class="lead">
@@ -30,7 +30,7 @@
                                 <label asp-for="Input.Password"></label>
                                 <input type="password" class="form-control" placeholder="Contraseña" asp-for="Input.Password" autocomplete="off">
                             </div>
-                            
+
                             @if (Model.View.AllowRememberLogin)
                             {
                                 <div class="form-group">
@@ -42,7 +42,7 @@
                                     </div>
                                 </div>
                             }
-                            
+
                             <button class="btn btn-primary" name="Input.Button" value="login">Ingresar</button>
                             <button class="btn btn-secondary" name="Input.Button" value="cancel">Cancelar</button>
                         </form>

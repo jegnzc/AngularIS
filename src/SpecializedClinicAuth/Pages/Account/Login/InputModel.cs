@@ -4,7 +4,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace IdentityServerAspNetIdentity.Pages.Login;
+namespace SpecializedClinicAuth.Pages.Account.Login;
 
 public class InputModel
 {

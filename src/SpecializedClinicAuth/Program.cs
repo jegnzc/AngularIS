@@ -1,6 +1,6 @@
-﻿using IdentityServer.Middleware;
-using IdentityServerAspNetIdentity;
-using Serilog;
+﻿using Serilog;
+using SpecializedClinicAuth;
+using SpecializedClinicAuth.Middleware;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()

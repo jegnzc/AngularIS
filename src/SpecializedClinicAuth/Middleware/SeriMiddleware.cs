@@ -1,4 +1,4 @@
-﻿namespace IdentityServer.Middleware;
+﻿namespace SpecializedClinicAuth.Middleware;
 
 public class RequestResponseLoggerMiddleware
 {
@@ -8,7 +8,7 @@ public class RequestResponseLoggerMiddleware
     public RequestResponseLoggerMiddleware(RequestDelegate next, IConfiguration config)
     {
         _next = next;
-        _isRequestResponseLoggingEnabled = config.GetValue<bool>("EnableRequestResponseLogging", false);
+        _isRequestResponseLoggingEnabled = config.GetValue("EnableRequestResponseLogging", false);
     }
 
     public async Task InvokeAsync(HttpContext httpContext)

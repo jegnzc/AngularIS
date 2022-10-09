@@ -1,11 +1,11 @@
 ﻿using Duende.IdentityServer;
 using Duende.IdentityServer.Models;
 using IdentityModel;
-using IdentityServerAspNetIdentity.Models;
 using Microsoft.AspNetCore.Identity;
+using SpecializedClinicAuth.Models;
 using System.Security.Claims;
 
-namespace IdentityServerAspNetIdentity;
+namespace SpecializedClinicAuth;
 
 public static class Config
 {

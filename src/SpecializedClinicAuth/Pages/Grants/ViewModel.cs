@@ -1,4 +1,4 @@
-namespace IdentityServerAspNetIdentity.Pages.Grants;
+namespace SpecializedClinicAuth.Pages.Grants;
 
 public class ViewModel
 {
