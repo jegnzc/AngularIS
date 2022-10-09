@@ -1,4 +1,5 @@
-﻿using IdentityServerAspNetIdentity;
+﻿using IdentityServer.Middleware;
+using IdentityServerAspNetIdentity;
 using Serilog;
 
 Log.Logger = new LoggerConfiguration()
@@ -19,9 +20,8 @@ try
     var app = builder
         .ConfigureServices()
         .ConfigurePipeline();
-
+    app.UseMiddleware<RequestResponseLoggerMiddleware>();
     app.MapControllers();
-
     app.Run();
 }
 catch (Exception ex) when (ex.GetType().Name is not "StopTheHostException") // https://github.com/dotnet/runtime/issues/60600

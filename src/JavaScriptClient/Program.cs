@@ -1,6 +1,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Net;
 using System.Security.Claims;
+using Duende.Bff;
 using Duende.Bff.Yarp;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -86,11 +87,8 @@ app.UseEndpoints(endpoints =>
         .RequireAuthorization()
         .AsBffApiEndpoint(requireAntiForgeryCheck: false);
 
-    //endpoints.MapGet("/local/identity", LocalIdentityHandler)
-    //    .AsBffApiEndpoint(requireAntiForgeryCheck: false);
-
-    endpoints.MapRemoteBffApiEndpoint("/remote", "https://localhost:5001")
-        .RequireAccessToken(Duende.Bff.TokenType.User);
+    endpoints.MapRemoteBffApiEndpoint("/remote", "https://localhost:5001", false)
+        .RequireAccessToken(TokenType.User);
 
     endpoints.MapFallbackToFile("/index.html");
 });
