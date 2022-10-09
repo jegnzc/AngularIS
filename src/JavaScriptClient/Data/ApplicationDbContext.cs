@@ -1,7 +1,7 @@
 ﻿using JavaScriptClient.Data.Models.Inventory;
 using Microsoft.EntityFrameworkCore;
 
-namespace FootballPools.Data.Context;
+namespace JavaScriptClient.Data.Context;
 
 public class ApplicationDbContext : DbContext
 {

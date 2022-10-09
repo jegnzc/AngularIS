@@ -1,14 +1,17 @@
-using System.IdentityModel.Tokens.Jwt;
-using System.Net;
-using System.Security.Claims;
 using Duende.Bff;
 using Duende.Bff.Yarp;
+using JavaScriptClient.Data.Context;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
+
+var migrationsAssembly = typeof(Program).Assembly.GetName().Name;
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddAuthorization();
 
