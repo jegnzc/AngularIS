@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "JavaScriptClient": {
+    "SpecializedClinicApplication": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "JavaScriptClient:build:production"
+              "browserTarget": "SpecializedClinicApplication:build:production"
             },
             "development": {
-              "browserTarget": "JavaScriptClient:build:development",
+              "browserTarget": "SpecializedClinicApplication:build:development",
               "proxyConfig": "proxy.conf.js"
             }
           },
@@ -81,7 +81,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "JavaScriptClient:build"
+            "browserTarget": "SpecializedClinicApplication:build"
           }
         },
         "test": {

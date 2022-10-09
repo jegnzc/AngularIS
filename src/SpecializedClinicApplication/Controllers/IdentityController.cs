@@ -2,7 +2,7 @@ using Duende.Bff;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Api.Controllers;
+namespace SpecializedClinicApplication.Controllers;
 
 [Authorize]
 [Route("test")]

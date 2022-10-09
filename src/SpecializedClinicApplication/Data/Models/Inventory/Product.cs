@@ -1,4 +1,4 @@
-﻿namespace JavaScriptClient.Data.Models.Inventory;
+﻿namespace SpecializedClinicApplication.Data.Models.Inventory;
 public class Product
 {
     public int Id { get; set; }

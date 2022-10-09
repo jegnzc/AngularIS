@@ -7,7 +7,7 @@
 		<SpaRoot>ClientApp\</SpaRoot>
 		<SpaProxyServerUrl>https://localhost:5004</SpaProxyServerUrl>
 		<SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
-		<RootNamespace>JavaScriptClient</RootNamespace>
+		<RootNamespace>SpecializedClinicApplication</RootNamespace>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<TypeScriptJSXEmit>none</TypeScriptJSXEmit>
 	</PropertyGroup>

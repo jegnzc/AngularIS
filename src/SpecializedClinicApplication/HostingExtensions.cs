@@ -1,11 +1,11 @@
 ﻿using IdentityModel;
-using JavaScriptClient.Data.Context;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
+using SpecializedClinicApplication.Data;
 using System.Security.Claims;
 
-namespace JavaScriptClient
+namespace SpecializedClinicApplication
 {
     public static class HostingExtensions
     {

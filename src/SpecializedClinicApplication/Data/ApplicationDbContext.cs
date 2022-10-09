@@ -1,7 +1,7 @@
-﻿using JavaScriptClient.Data.Models.Inventory;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using SpecializedClinicApplication.Data.Models.Inventory;
 
-namespace JavaScriptClient.Data.Context;
+namespace SpecializedClinicApplication.Data;
 
 public class ApplicationDbContext : DbContext
 {

@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace JavaScriptClient.Data.Migrations.Business.ApplicationDb
+namespace SpecializedClinicApplication.Data.Migrations.Business.ApplicationDb
 {
     public partial class InitialUsers : Migration
     {

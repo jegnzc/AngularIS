@@ -1,9 +1,9 @@
 using Duende.Bff;
 using Duende.Bff.Yarp;
-using JavaScriptClient;
-using JavaScriptClient.Data.Context;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
+using SpecializedClinicApplication;
+using SpecializedClinicApplication.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
