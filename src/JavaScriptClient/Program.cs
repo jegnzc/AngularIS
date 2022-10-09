@@ -42,6 +42,7 @@ builder.Services
         options.Scope.Add("openid");
         options.Scope.Add("profile");
         options.Scope.Add("api1");
+        options.Scope.Add("IdentityServerApi");
         options.Scope.Add("color");
         options.Scope.Add("offline_access");
         options.Scope.Add("custom.profile");

@@ -12,7 +12,19 @@ export class ProfileComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.http.get<string>("remote/user").pipe(
+    this.http.get<string>("bff/testing").pipe(
+      map(response => {
+        console.log("Matenme");
+        console.log(response);
+      }, catchError(
+        (e) => {
+          return throwError(() => new Error("Cerote " + e));
+        }
+      )
+      )
+    ).subscribe();
+
+    this.http.get<string>("remote/localApi").pipe(
       map(response => {
         console.log("Matenme");
         console.log(response);

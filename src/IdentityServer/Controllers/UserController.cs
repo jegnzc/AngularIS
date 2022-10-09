@@ -4,12 +4,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
+using static Duende.IdentityServer.IdentityServerConstants;
 
 namespace IdentityServer.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
-    [Authorize]
+    [Route("localApi")]
+    [Authorize(LocalApi.PolicyName)]
     public class UserController : ControllerBase
     {
         private readonly ApplicationDbContext _context;

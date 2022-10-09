@@ -1,17 +1,13 @@
-using Duende.IdentityServer;
 using Duende.IdentityServer.EntityFramework.DbContexts;
 using Duende.IdentityServer.EntityFramework.Mappers;
-using Duende.IdentityServer.Models;
 using IdentityModel;
 using IdentityServerAspNetIdentity.Data;
 using IdentityServerAspNetIdentity.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
-using System.Reflection.Metadata;
 using System.Security.Claims;
 using System.Text.Json.Serialization;
-using static System.Formats.Asn1.AsnWriter;
 
 namespace IdentityServerAspNetIdentity;
 
@@ -31,7 +27,7 @@ internal static class HostingExtensions
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
 
-
+        builder.Services.AddLocalApiAuthentication();
 
         builder.Services
             .AddIdentityServer(options =>
