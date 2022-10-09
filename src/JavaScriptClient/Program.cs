@@ -86,21 +86,13 @@ app.UseEndpoints(endpoints =>
         .RequireAuthorization()
         .AsBffApiEndpoint(requireAntiForgeryCheck: false);
 
-    endpoints.MapGet("/local/identity", LocalIdentityHandler)
-        .AsBffApiEndpoint(requireAntiForgeryCheck: false);
+    //endpoints.MapGet("/local/identity", LocalIdentityHandler)
+    //    .AsBffApiEndpoint(requireAntiForgeryCheck: false);
 
-    endpoints.MapRemoteBffApiEndpoint("/remote", "https://localhost:6001")
+    endpoints.MapRemoteBffApiEndpoint("/remote", "https://localhost:5001")
         .RequireAccessToken(Duende.Bff.TokenType.User);
 
     endpoints.MapFallbackToFile("/index.html");
-    //endpoints.MapFallbackToFile("../ClientApp/src/index.html");
 });
 
 app.Run();
-
-[Authorize]
-static IResult LocalIdentityHandler(ClaimsPrincipal user, HttpContext context)
-{
-    var name = user.FindFirst("name")?.Value ?? user.FindFirst("sub")?.Value;
-    return Results.Json(new { message = "Local API Success!", user = name });
-}

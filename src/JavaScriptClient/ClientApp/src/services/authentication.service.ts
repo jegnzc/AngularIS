@@ -28,16 +28,6 @@ export class AuthService {
   }
 
   getUserData(): Observable<UserClaim[]> {
-    var test = this.http.get<UserClaim[]>(BffKeys.USER, httpOptions)
-      .pipe(
-        map(response => {
-          return new User(
-            response.find(x => x.type == UserClaimKeys.SUB)?.value!,
-            response.find(x => x.type == UserClaimKeys.PREFERRED_USERNAME)?.value!,
-            response.find(x => x.type == UserClaimKeys.EMAIL)?.value!,
-            response.find(x => x.type == UserClaimKeys.ROLE)?.value!
-          );
-        }));
     return this.http.get<UserClaim[]>(BffKeys.USER, httpOptions);
   }
 

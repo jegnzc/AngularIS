@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Observable, map, throwError } from 'rxjs';
 
 @Component({
   selector: 'profile-component',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
+    let testing = this.http.get<string>("remote/identity").pipe(
+      map(response => {
+        console.log("Matenme");
+        console.log(response);
+      }));
+
   }
 
 }

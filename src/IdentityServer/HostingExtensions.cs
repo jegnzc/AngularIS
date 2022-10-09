@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Serilog;
 using System.Reflection.Metadata;
 using System.Security.Claims;
+using System.Text.Json.Serialization;
 using static System.Formats.Asn1.AsnWriter;
 
 namespace IdentityServerAspNetIdentity;
@@ -55,17 +56,11 @@ internal static class HostingExtensions
             .AddAspNetIdentity<ApplicationUser>()
             .AddProfileService<CustomProfileService>();
 
-        //builder.Services.AddAuthentication()
-        //    .AddGoogle(options =>
-        //    {
-        //        options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
 
-        //        // register your IdentityServer with Google at https://console.developers.google.com
-        //        // enable the Google+ API
-        //        // set the redirect URI to https://localhost:5001/signin-google
-        //        options.ClientId = "copy client ID from Google here";
-        //        options.ClientSecret = "copy client secret from Google here";
-        //    });
+        builder.Services.AddControllers().AddJsonOptions(options =>
+        {
+            options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+        });
 
         return builder.Build();
     }
