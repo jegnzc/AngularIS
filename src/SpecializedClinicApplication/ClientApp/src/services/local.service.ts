@@ -11,12 +11,12 @@ export class LocalService {
     localStorage.setItem(key, value);
   }
 
-  public saveJsonData(key: string, value: object) {
+  public saveJsonData(key: string, value) {
     localStorage.setItem(key, JSON.stringify(value));
   }
 
-  public getJsonData(key: string) {
-    return JSON.parse(localStorage.getItem(key) ?? '{}')
+  public getJsonData<T>(key: string) {
+    return JSON.parse(localStorage.getItem(key) ?? '{}') as T
   }
 
   public getData(key: string) {

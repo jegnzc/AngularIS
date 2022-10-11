@@ -1,10 +1,5 @@
-// =============================
-// Email: info@ebenmonney.com
-// www.ebenmonney.com/templates
-// =============================
-
 export class User {
-  // Note: Using only optional constructor properties without backing store disables typescript's type checking for the type
+
   constructor(id?: string, userName?: string, email?: string, roles?: string) {
     this.id = id;
     this.userName = userName;
@@ -17,3 +12,17 @@ export class User {
   public email?: string;
   public roles?: string;
 }
+
+export class UpdateUser {
+  constructor(userId?: string, role?: string, email?: string, userName?: string) {
+    this.userId = userId;
+    this.userName = userName;
+    this.email = email;
+    this.role = role;
+  }
+  public userId?: string;
+  public role?: string;
+  public email?: string;
+  public userName?: string;
+}
+

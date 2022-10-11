@@ -32,6 +32,19 @@ public static class Config
             new ApiScope(IdentityServerConstants.LocalApi.ScopeName),
         };
 
+    //public static IEnumerable<ApiResource> ApiResources =>
+    //    new List<ApiResource>
+    //    {
+    //        new ApiResource(IdentityServerConstants.LocalApi.ScopeName, "Local API")
+    //{
+    //    // additional claims to put into access token
+    //    UserClaims =
+    //    {
+    //        "role"
+    //    }
+    //}
+    //    };
+
     public static IEnumerable<Client> Clients =>
         new List<Client>
         {
@@ -95,6 +108,7 @@ public static class Config
                     "color",
                     IdentityServerConstants.LocalApi.ScopeName
                 },
+                AlwaysIncludeUserClaimsInIdToken = true,
                 AllowOfflineAccess = true
             }
         };

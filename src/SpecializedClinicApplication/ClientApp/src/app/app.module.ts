@@ -18,6 +18,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserManagementService } from '../services/user-management.service';
 
 
 @NgModule({
@@ -42,7 +43,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ProfileComponent,
     ManageUsersComponent
   ],
-  providers: [AuthService],
+  providers: [AuthService, UserManagementService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

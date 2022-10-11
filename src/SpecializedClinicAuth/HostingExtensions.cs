@@ -28,7 +28,12 @@ internal static class HostingExtensions
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
 
-        builder.Services.AddLocalApiAuthentication();
+        builder.Services.AddLocalApiAuthentication(principal =>
+        {
+            principal.Identities.First().AddClaim(new Claim("additional_claim", "additional_value"));
+
+            return Task.FromResult(principal);
+        });
 
         builder.Services
             .AddIdentityServer(options =>
@@ -110,6 +115,10 @@ internal static class HostingExtensions
             if (!configContext.IdentityResources.Any())
                 foreach (var resource in Config.IdentityResources)
                     configContext.IdentityResources.Add(resource.ToEntity());
+
+            //if (!configContext.ApiResources.Any())
+            //    foreach (var apiResource in Config.ApiResources)
+            //        configContext.ApiResources.Add(apiResource.ToEntity());
 
             if (!configContext.ApiScopes.Any())
                 foreach (var resource in Config.ApiScopes)

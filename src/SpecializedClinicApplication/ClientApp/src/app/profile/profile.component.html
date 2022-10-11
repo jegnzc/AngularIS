@@ -3,23 +3,31 @@
 
     <!-- Form -->
     <form [formGroup]="myForm" (ngSubmit)="submitForm()" novalidate>
+      <h1 class="font-medium leading-tight text-5xl mt-0 mb-2 text-blue-600">Datos</h1>
+
       <!-- Name -->
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="Name" formControlName="name" />
-      </mat-form-field>
-      <!-- Email -->
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="Email" formControlName="email" />
-      </mat-form-field>
+      <p>
+        <mat-label>Usuario: </mat-label>
+        <mat-form-field>
+          <input matInput placeholder="Usuario" formControlName="userName" *ngIf="user$ | async; let user" value="{{user.userName}} " />
+        </mat-form-field>
+      </p>
+      <p>
+        <!-- Email -->
+        <mat-label>Correo: </mat-label>
+        <mat-form-field>
+          <input matInput placeholder="Email" formControlName="email" />
+        </mat-form-field>
+      </p>
       <!-- Gender -->
-      <div class="misc-bottom-padding">
-        <mat-label>Gender:</mat-label>
-        <mat-radio-group aria-label="Select an option" formControlName="gender">
-          <mat-radio-button value="Male">Male</mat-radio-button>
-          <mat-radio-button value="Female">Female</mat-radio-button>
+      <p>
+        <mat-label>Rol: </mat-label>
+        <mat-radio-group aria-label="Roles" formControlName="rol">
+          <mat-radio-button value="Administrador">Administrador</mat-radio-button>
+          <mat-radio-button value="Operador">Operador</mat-radio-button>
         </mat-radio-group>
-      </div>
-      <!-- Date picker -->
+      </p>
+      <!--<p>
       <mat-form-field>
         <input matInput
                readonly
@@ -30,7 +38,10 @@
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
+      </p>-->
+      <!-- Date picker -->
       <!-- Class -->
+      <!--<p>
       <mat-form-field>
         <mat-label>Grade</mat-label>
         <mat-select formControlName="grade">
@@ -39,8 +50,9 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
+      </p>-->
       <!-- Add Subjects -->
-      <mat-form-field class="multiple-items">
+      <!--<mat-form-field class="multiple-items">
         <mat-chip-list #chipList>
           <mat-chip *ngFor="let subjectsArray of SubjectsArray"
                     [selectable]="selectable"
@@ -55,41 +67,9 @@
                  [matChipInputAddOnBlur]="addOnBlur"
                  (matChipInputTokenEnd)="add($event)" />
         </mat-chip-list>
-      </mat-form-field>
+      </mat-form-field>-->
       <!-- Submit -->
-      <div class="button-wrapper">
-        <button mat-flat-button color="primary">Submit</button>
-      </div>
+      <button mat-flat-button color="primary">Editar</button>
     </form>
-    <!--  -->
-    <h1 class="font-medium leading-tight text-5xl mt-0 mb-2 text-primary">Datos</h1>
-    <p>
-      <mat-form-field appearance="legacy">
-        <mat-label>Nombre</mat-label>
-        <input matInput placeholder="Nombre">
-        <!--<mat-icon matSuffix>sentiment_very_satisfied</mat-icon>-->
-        <!--<mat-hint>Hint</mat-hint>-->
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="standard">
-        <mat-label>Nombre de Usuario</mat-label>
-        <input matInput placeholder="Placeholder">
-        <!--<mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-        <mat-hint>Hint</mat-hint>-->
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="fill">
-        <mat-label>Rol</mat-label>
-        <input matInput placeholder="Placeholder">
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label>Apellido</mat-label>
-        <input matInput placeholder="Placeholder">
-      </mat-form-field>
-    </p>
   </div>
 </div>

@@ -6,7 +6,8 @@ import { Observable, map, throwError } from 'rxjs';
 import { UserClaimKeys } from './claim-keys';
 import { BffKeys } from './bff-keys';
 import { User } from '../models/user.model';
-import { LocalService } from '../services/local.service';
+import { LocalService } from './local.service';
+import { LocalKeys } from './local-keys';
 
 export interface UserClaim {
   type: string;
@@ -45,7 +46,7 @@ export class AuthService {
   }
 
   logout() {
-    this.userClaims = this.local.getJsonData('currentUser');
+    this.userClaims = this.local.getJsonData(LocalKeys.USER);
     let logoutUrl = this.userClaims.find(x => x.type == UserClaimKeys.LOGOUT_URL)?.value!;
     this.userClaims = [];
     this.local.clearData();

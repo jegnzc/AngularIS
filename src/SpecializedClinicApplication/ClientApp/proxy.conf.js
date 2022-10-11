@@ -16,6 +16,7 @@ const PROXY_CONFIG = [
       "/oauth",
       "/Identity",
       "/remote",
+      "/remote/localApi",
       "/.well-known",
       "/_framework"
     ],

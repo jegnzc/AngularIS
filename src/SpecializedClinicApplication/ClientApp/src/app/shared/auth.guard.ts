@@ -22,7 +22,6 @@ export class AuthGuard implements CanActivate {
     return this.authService.getUserData()
       .pipe(
         map(response => {
-
           this.local.saveJsonData("currentUser", response);
           return true;
         }),

@@ -16,12 +16,12 @@
       </mat-sidenav>
       <mat-sidenav-content class="flex h-screen bg-white">
         <div class="m-auto p-10">
-        <div *ngIf="activeComponent == 'profile'" class="container">
-          <profile-component></profile-component>
-        </div>
-        <div *ngIf="activeComponent == 'manage-users'" class="container">
-          <manage-users-component></manage-users-component>
-        </div>
+          <div *ngIf="activeComponent == 'profile'" class="container">
+            <profile-component></profile-component>
+          </div>
+          <div *ngIf="activeComponent == 'manage-users'" class="container">
+            <manage-users-component></manage-users-component>
+          </div>
 
         </div>
       </mat-sidenav-content>
