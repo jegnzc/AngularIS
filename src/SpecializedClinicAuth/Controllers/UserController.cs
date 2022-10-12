@@ -65,8 +65,8 @@ namespace SpecializedClinicAuth.Controllers
             return userModels;
         }
 
-        [HttpPost("UpdateUser")]
-        public async Task<IActionResult> Post(UpdateUser request)
+        [HttpPatch]
+        public async Task<IActionResult> Patch(UpdateUser request)
         {
             var user = await _userManager.FindByIdAsync(request.UserId);
             //var roleIdentity = User.Identities.ElementAt(1);
@@ -78,6 +78,15 @@ namespace SpecializedClinicAuth.Controllers
             await _userManager.RemoveFromRoleAsync(user, roles.FirstOrDefault());
             await _userManager.AddToRoleAsync(user, request.Role);
             await _userManager.UpdateAsync(user);
+
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var user = await _userManager.FindByIdAsync(id.ToString());
+            await _userManager.DeleteAsync(user);
 
             return Ok();
         }

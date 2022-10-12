@@ -32,7 +32,11 @@ export class UserManagementService {
   }
 
   updateUser(updateUser: UpdateUser): Observable<any> {
-    return this.http.post(UrlKeys.REMOTE + updateUser.constructor.name, updateUser);
+    return this.http.post(UrlKeys.REMOTE, updateUser);
+  }
+
+  deleteUser(id: number): Observable<any> {
+    return this.http.delete(UrlKeys.REMOTE + "/" + + id);
   }
 
   getCurrentUser(): Observable<User> {
