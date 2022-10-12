@@ -1,10 +1,13 @@
+using Mapster;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SpecializedClinicAuth.Data;
 using SpecializedClinicAuth.Models;
 using System.Security.Claims;
+using System.Text.RegularExpressions;
 using static Duende.IdentityServer.IdentityServerConstants;
 
 namespace SpecializedClinicAuth.Controllers
@@ -42,6 +45,24 @@ namespace SpecializedClinicAuth.Controllers
                 Role = roles.FirstOrDefault(),
                 UserName = user.UserName,
             };
+        }
+
+        [HttpGet]
+        public async Task<List<UserModel>> Get()
+        {
+            var users = _userManager.Users.ToList();
+
+            var userModels = new List<UserModel>();
+
+            users.ForEach(async user =>
+            {
+                var currentUser = user.Adapt<UserModel>();
+                var roles = await _userManager.GetRolesAsync(user);
+                currentUser.Role = roles.FirstOrDefault();
+                userModels.Add(currentUser);
+            });
+
+            return userModels;
         }
 
         [HttpPost("UpdateUser")]

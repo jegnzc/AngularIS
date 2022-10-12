@@ -16,6 +16,7 @@ export class ProfileComponent {
   user!: User;
 
   constructor(public fb: FormBuilder, public userService: UserManagementService) { }
+
   ngOnInit(): void {
     this.reactiveForm();
     this.userService.getCurrentUser().subscribe(res => {

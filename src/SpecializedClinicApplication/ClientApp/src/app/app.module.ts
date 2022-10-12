@@ -20,6 +20,7 @@ import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserManagementService } from '../services/user-management.service';
 
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 @NgModule({
   imports: [
@@ -43,7 +44,8 @@ import { UserManagementService } from '../services/user-management.service';
     ProfileComponent,
     ManageUsersComponent
   ],
-  providers: [AuthService, UserManagementService],
+  providers: [AuthService, UserManagementService,
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
