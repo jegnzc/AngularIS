@@ -13,7 +13,7 @@ using static Duende.IdentityServer.IdentityServerConstants;
 namespace SpecializedClinicAuth.Controllers
 {
     [ApiController]
-    [Route("localApi")]
+    [Route("user")]
     [Authorize(LocalApi.PolicyName)]
     public class UserController : ControllerBase
     {

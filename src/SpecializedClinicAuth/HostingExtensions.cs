@@ -79,7 +79,7 @@ internal static class HostingExtensions
         app.UseRouting();
         app.UseIdentityServer();
         app.UseAuthorization();
-        app.UseMiddleware<ClaimsMiddleware>();
+        //app.UseMiddleware<ClaimsMiddleware>();
 
         app.MapRazorPages()
             .RequireAuthorization();

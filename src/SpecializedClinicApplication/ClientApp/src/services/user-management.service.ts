@@ -16,7 +16,7 @@ export interface UserClaim {
 
 @Injectable()
 export class UserManagementService {
-  userId!: string;
+  userId!: number;
   constructor(private http: HttpClient, private local: LocalService) {
     this.getLocalUserData();
   }
@@ -24,7 +24,7 @@ export class UserManagementService {
   getLocalUserData(): User {
     let claims = this.local.getJsonData<UserClaim[]>(LocalKeys.USER);
     return new User(
-      claims.find(x => x.type == UserClaimKeys.SUB)?.value!,
+      parseInt(claims.find(x => x.type == UserClaimKeys.SUB)?.value!),
       claims.find(x => x.type == UserClaimKeys.PREFERRED_USERNAME)?.value!,
       claims.find(x => x.type == UserClaimKeys.EMAIL)?.value!,
       claims.find(x => x.type == UserClaimKeys.ROLE)?.value!

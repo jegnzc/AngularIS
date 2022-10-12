@@ -24,8 +24,6 @@ export class ManageUsersComponent implements OnInit {
   constructor(public userService: UserManagementService) { }
 
   ngOnInit() {
-    //this.dataSource.sort = this.sort;
-    //this.dataSource.paginator = this.matPaginator;
     this.userService.getAllUsers().subscribe(result => {
       result.forEach(function (row, index) {
         row.index = index;
@@ -45,8 +43,12 @@ export class ManageUsersComponent implements OnInit {
     this.dataSource.filter = value;
   }
 
-  delete(index) {
-    this.dataSource.data.splice(index, 1);
-    this.dataSource._updateChangeSubscription();
+  delete(user: User) {
+    this.userService.deleteUser(user.id!).subscribe(result => {
+      this.dataSource.data.splice(user.index!, 1);
+      this.dataSource._updateChangeSubscription();
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.matPaginator;
+    });
   }
 }
