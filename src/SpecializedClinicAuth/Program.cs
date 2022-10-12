@@ -20,7 +20,7 @@ try
     var app = builder
         .ConfigureServices()
         .ConfigurePipeline();
-    app.UseMiddleware<RequestResponseLoggerMiddleware>();
+    //app.UseMiddleware<RequestResponseLoggerMiddleware>();
     app.MapControllers();
     app.Run();
 }

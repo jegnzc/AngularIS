@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Serilog;
 using SpecializedClinicAuth.Data;
 using SpecializedClinicAuth.Extensibility;
+using SpecializedClinicAuth.Middleware;
 using SpecializedClinicAuth.Models;
 using System.Security.Claims;
 using System.Text.Json.Serialization;
@@ -28,12 +29,7 @@ internal static class HostingExtensions
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
 
-        builder.Services.AddLocalApiAuthentication(principal =>
-        {
-            principal.Identities.First().AddClaim(new Claim("additional_claim", "additional_value"));
-
-            return Task.FromResult(principal);
-        });
+        builder.Services.AddLocalApiAuthentication();
 
         builder.Services
             .AddIdentityServer(options =>
@@ -83,6 +79,7 @@ internal static class HostingExtensions
         app.UseRouting();
         app.UseIdentityServer();
         app.UseAuthorization();
+        app.UseMiddleware<ClaimsMiddleware>();
 
         app.MapRazorPages()
             .RequireAuthorization();

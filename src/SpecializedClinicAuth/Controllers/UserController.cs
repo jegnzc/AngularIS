@@ -33,13 +33,13 @@ namespace SpecializedClinicAuth.Controllers
         public async Task<GetUserBasicDataResponse> Get(int id)
         {
             var user = await _userManager.FindByIdAsync(id.ToString());
-            var role = ((ClaimsIdentity)User.Identity).Claims
-                .Where(c => c.Type == System.Security.Claims.ClaimTypes.Role)
-                .Select(c => c.Value).FirstOrDefault();
+
+            var roles = await _userManager.GetRolesAsync(user);
+
             return new GetUserBasicDataResponse()
             {
                 Email = user.Email,
-                Role = role,
+                Role = roles.FirstOrDefault(),
                 UserName = user.UserName,
             };
         }
@@ -48,10 +48,13 @@ namespace SpecializedClinicAuth.Controllers
         public async Task<IActionResult> Post(UpdateUser request)
         {
             var user = await _userManager.FindByIdAsync(request.UserId);
-            var role = ((ClaimsIdentity)User.Identity).Claims
-                            .Where(c => c.Type == System.Security.Claims.ClaimTypes.Role)
-                            .Select(c => c.Value).FirstOrDefault();
-            await _userManager.RemoveFromRoleAsync(user, role);
+            //var roleIdentity = User.Identities.ElementAt(1);
+            //var role = roleIdentity.Claims
+            //                .Where(c => c.Type == System.Security.Claims.ClaimTypes.Role)
+            //                .Select(c => c.Value).FirstOrDefault();
+            var roles = await _userManager.GetRolesAsync(user);
+
+            await _userManager.RemoveFromRoleAsync(user, roles.FirstOrDefault());
             await _userManager.AddToRoleAsync(user, request.Role);
             await _userManager.UpdateAsync(user);
 
