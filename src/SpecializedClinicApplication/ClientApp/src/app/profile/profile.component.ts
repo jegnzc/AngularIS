@@ -13,20 +13,28 @@ import { User } from '../../models/user.model';
 })
 export class ProfileComponent {
   myForm!: FormGroup;
-  user$!: Observable<User>;
+  user!: User;
 
   constructor(public fb: FormBuilder, public userService: UserManagementService) { }
   ngOnInit(): void {
-    this.user$ = this.userService.getUser(this.userService.getLocalUserData().id!);
     this.reactiveForm();
+    this.userService.getCurrentUser().subscribe(res => {
+      this.user = res;
+      this.myForm.patchValue({
+        userName: this.user.userName,
+        email: this.user.email,
+        role: this.user.role
+      })
+    });
   }
 
   reactiveForm() {
     this.myForm = this.fb.group({
       userName: [''],
       email: [''],
-      rol: [''],
+      role: [''],
     });
+    this.myForm.disable();
   }
 
   date(e) {

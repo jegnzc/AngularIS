@@ -16,6 +16,7 @@ export interface UserClaim {
 
 @Injectable()
 export class UserManagementService {
+  userId!: string;
   constructor(private http: HttpClient, private local: LocalService) {
     this.getLocalUserData();
   }
@@ -34,7 +35,8 @@ export class UserManagementService {
     return this.http.post(UrlKeys.REMOTE + updateUser.constructor.name, updateUser);
   }
 
-  getUser(userId: string): Observable<User> {
-    return this.http.get<User>(UrlKeys.REMOTE + "/" + userId);
+  getCurrentUser(): Observable<User> {
+    this.userId = this.getLocalUserData().id!
+    return this.http.get<User>(UrlKeys.REMOTE + "/" + this.userId);
   }
 }

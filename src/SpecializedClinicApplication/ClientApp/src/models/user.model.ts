@@ -1,16 +1,16 @@
 export class User {
 
-  constructor(id?: string, userName?: string, email?: string, roles?: string) {
+  constructor(id?: string, userName?: string, email?: string, role?: string) {
     this.id = id;
     this.userName = userName;
     this.email = email;
-    this.roles = roles;
+    this.role = role;
   }
 
   public id?: string;
   public userName?: string;
   public email?: string;
-  public roles?: string;
+  public role?: string;
 }
 
 export class UpdateUser {
