@@ -31,8 +31,8 @@ export class UserManagementService {
     );
   }
 
-  updateUser(updateUser: UpdateUser): Observable<any> {
-    return this.http.post(UrlKeys.REMOTE, updateUser);
+  patchUser(patchUser: UpdateUser): Observable<any> {
+    return this.http.post(UrlKeys.REMOTE, patchUser);
   }
 
   deleteUser(id: number): Observable<any> {
