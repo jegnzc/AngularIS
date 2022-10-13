@@ -1,4 +1,5 @@
 <mat-toolbar color="primary" class="text-white">
+  <img class="rounded-full border border-gray-100 shadow-sm h-full" src="../../assets/img/diente-tesis-logo.png" />
 
   <button mat-button routerLink="/">
     <mat-icon>home</mat-icon>
@@ -18,13 +19,13 @@
   <button mat-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
     <mat-icon>menu</mat-icon>
   </button>
-
 </mat-toolbar>
+
 <mat-menu x-position="before" #menu="matMenu">
   <button mat-menu-item routerLink="/">Clientes</button>
   <button mat-menu-item routerLink="/">Inventario</button>
   <ng-container *ngIf="user$ | async; let user">
-      <button mat-menu-item routerLink="/settings">{{user.userName}}</button>
-      <button mat-menu-item routerLink="/logout">Cerrar sesión</button>
+    <button mat-menu-item routerLink="/settings">{{user.userName}}</button>
+    <button mat-menu-item routerLink="/logout">Cerrar sesión</button>
   </ng-container>
 </mat-menu>

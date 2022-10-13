@@ -54,14 +54,13 @@ namespace SpecializedClinicAuth.Controllers
 
             var userModels = new List<UserModel>();
 
-            users.ForEach(async user =>
+            foreach (var user in users)
             {
                 var currentUser = user.Adapt<UserModel>();
                 var roles = await _userManager.GetRolesAsync(user);
                 currentUser.Role = roles.FirstOrDefault();
                 userModels.Add(currentUser);
-            });
-
+            }
             return userModels;
         }
 

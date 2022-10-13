@@ -21,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserManagementService } from '../services/user-management.service';
 
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 
 @NgModule({
   imports: [
@@ -42,7 +43,8 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
     LogoutComponent,
     SettingsComponent,
     ProfileComponent,
-    ManageUsersComponent
+    ManageUsersComponent,
+    EditDialogComponent
   ],
   providers: [AuthService, UserManagementService,
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }  ],

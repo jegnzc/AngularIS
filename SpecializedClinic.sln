@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpecializedClinicAuth", "src\SpecializedClinicAuth\SpecializedClinicAuth.csproj", "{D5F651EA-5088-4FCF-A9FE-1930FBD43BBC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpecializedClinicApplication", "src\SpecializedClinicApplication\SpecializedClinicApplication.csproj", "{A900F3A8-8970-4D10-AA60-BF8BAB71495E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D5F651EA-5088-4FCF-A9FE-1930FBD43BBC} = {D5F651EA-5088-4FCF-A9FE-1930FBD43BBC}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
