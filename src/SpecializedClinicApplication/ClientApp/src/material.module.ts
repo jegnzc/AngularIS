@@ -17,6 +17,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatTableResponsiveModule } from './app/mat-table-responsive/mat-table-responsive.module';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { MatDialogModule } from '@angular/material/dialog';
 
 // r
 import { A11yModule } from '@angular/cdk/a11y';
@@ -32,7 +33,6 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatStepperModule } from '@angular/material/stepper';
-import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -67,6 +67,8 @@ import { MatTreeModule } from '@angular/material/tree';
     MatTableModule,
     MatSortModule,
     MatTableResponsiveModule,
+    MatDialogModule,
+    MatInputModule,
     // r
     A11yModule,
     ClipboardModule,
@@ -84,12 +86,10 @@ import { MatTreeModule } from '@angular/material/tree';
     MatChipsModule,
     MatStepperModule,
     MatDatepickerModule,
-    MatDialogModule,
     MatDividerModule,
     MatExpansionModule,
     MatGridListModule,
     MatIconModule,
-    MatInputModule,
     MatListModule,
     MatMenuModule,
     MatNativeDateModule,

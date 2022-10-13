@@ -47,7 +47,8 @@ import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
     EditDialogComponent
   ],
   providers: [AuthService, UserManagementService,
-    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }  ],
-  bootstrap: [AppComponent]
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }],
+  bootstrap: [AppComponent],
+  entryComponents: [EditDialogComponent]
 })
 export class AppModule { }

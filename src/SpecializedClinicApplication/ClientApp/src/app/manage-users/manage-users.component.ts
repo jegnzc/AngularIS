@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { User } from '../../models/user.model';
 import { UserManagementService } from '../../services/user-management.service';
+import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 
 @Component({
   selector: 'manage-users-component',
@@ -21,8 +23,25 @@ export class ManageUsersComponent implements OnInit {
     this.dataSource.paginator = paginator;
   }
 
-  constructor(public userService: UserManagementService) { }
+  constructor(public userService: UserManagementService, private dialog: MatDialog) { }
 
+  openDialog() {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = {
+      id: 1,
+      title: 'Angular For Beginners'
+    };
+
+    const dialogRef = this.dialog.open(EditDialogComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(
+      data => console.log("Dialog output:", data)
+    );
+  }
   ngOnInit() {
     this.userService.getAllUsers().subscribe(result => {
       result.forEach(function (row, index) {
