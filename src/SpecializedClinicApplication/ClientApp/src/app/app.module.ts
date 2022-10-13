@@ -22,6 +22,7 @@ import { UserManagementService } from '../services/user-management.service';
 
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
+import { EditRowComponent } from './edit-row/edit-row.component';
 
 @NgModule({
   imports: [
@@ -44,7 +45,8 @@ import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
     SettingsComponent,
     ProfileComponent,
     ManageUsersComponent,
-    EditDialogComponent
+    EditDialogComponent,
+    EditRowComponent
   ],
   providers: [AuthService, UserManagementService,
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }],
