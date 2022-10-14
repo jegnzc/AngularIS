@@ -3,9 +3,10 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { User } from '../../models/user.model';
 import { UserManagementService } from '../../services/user-management.service';
-import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
+import { ConfirmDialogComponent } from '../edit-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'manage-users-component',
@@ -23,23 +24,36 @@ export class ManageUsersComponent implements OnInit {
     this.dataSource.paginator = paginator;
   }
 
-  constructor(public userService: UserManagementService, private dialog: MatDialog) { }
+  constructor(
+    public userService: UserManagementService,
+    private dialog: MatDialog,
+    private router: Router
+  ) { }
 
-  openDialog() {
+  openDialog(user: User) {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
 
     dialogConfig.data = {
-      id: 1,
-      title: 'Angular For Beginners'
+      title: "Usuario",
+      description: "Eliminar",
     };
 
-    const dialogRef = this.dialog.open(EditDialogComponent, dialogConfig);
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(
-      data => console.log("Dialog output:", data)
+      data => {
+        if (data) {
+          this.userService.deleteUser(user.id!).subscribe(result => {
+            this.dataSource.data.splice(user.index!, 1);
+            this.dataSource._updateChangeSubscription();
+            this.dataSource.sort = this.sort;
+            this.dataSource.paginator = this.matPaginator;
+          });
+        }
+      }
     );
   }
   ngOnInit() {
@@ -69,5 +83,9 @@ export class ManageUsersComponent implements OnInit {
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.matPaginator;
     });
+  }
+
+  edit(user: User) {
+    this.router.navigate(["/user/edit", user.id!]);
   }
 }

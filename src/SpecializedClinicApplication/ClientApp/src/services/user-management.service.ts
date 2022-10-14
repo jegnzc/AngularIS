@@ -44,6 +44,10 @@ export class UserManagementService {
     return this.http.get<User>(UrlKeys.REMOTE + "/" + this.userId);
   }
 
+  getUser(id: number): Observable<User> {
+    return this.http.get<User>(UrlKeys.REMOTE + "/" + id);
+  }
+
   getAllUsers(): Observable<User[]> {
     this.userId = this.getLocalUserData().id!
     return this.http.get<User[]>(UrlKeys.REMOTE);

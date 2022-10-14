@@ -1,11 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { MatChipInputEvent } from '@angular/material/chips';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserManagementService } from '../../services/user-management.service';
-import { Observable, Subject } from 'rxjs';
 import { User } from '../../models/user.model';
-
 @Component({
   selector: 'profile-component',
   templateUrl: './profile.component.html',
@@ -31,7 +27,7 @@ export class ProfileComponent {
 
   reactiveForm() {
     this.myForm = this.fb.group({
-      userName: [''],
+      userName: ['', Validators.required],
       email: [''],
       role: [''],
     });

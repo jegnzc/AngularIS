@@ -27,3 +27,18 @@ export class UpdateUser {
   public userName?: string;
 }
 
+
+export class UserEditModel {
+
+  constructor(id?: number, userName?: string, email?: string, role?: string) {
+    this.id = id;
+    this.userName = userName;
+    this.email = email;
+    this.role = role;
+  }
+
+  public id?: number;
+  public userName?: string;
+  public email?: string;
+  public role?: string;
+}

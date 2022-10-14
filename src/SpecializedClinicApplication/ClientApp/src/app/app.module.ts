@@ -21,8 +21,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserManagementService } from '../services/user-management.service';
 
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
-import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
+import { ConfirmDialogComponent } from './edit-dialog/confirm-dialog.component';
 import { EditRowComponent } from './edit-row/edit-row.component';
+import { EditUserComponent } from './manage-users/edit-user/edit-user.component';
 
 @NgModule({
   imports: [
@@ -45,12 +46,13 @@ import { EditRowComponent } from './edit-row/edit-row.component';
     SettingsComponent,
     ProfileComponent,
     ManageUsersComponent,
-    EditDialogComponent,
-    EditRowComponent
+    ConfirmDialogComponent,
+    EditRowComponent,
+    EditUserComponent
   ],
   providers: [AuthService, UserManagementService,
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }],
   bootstrap: [AppComponent],
-  entryComponents: [EditDialogComponent]
+  entryComponents: [ConfirmDialogComponent]
 })
 export class AppModule { }
