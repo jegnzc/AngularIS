@@ -21,7 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserManagementService } from '../services/user-management.service';
 
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
-import { ConfirmDialogComponent } from './edit-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from '../../src/app/dialog-components/confirm-dialog.component';
 import { EditRowComponent } from './edit-row/edit-row.component';
 import { EditUserComponent } from './manage-users/edit-user/edit-user.component';
 import { AddUserComponent } from './manage-users/add-user/add-user.component';

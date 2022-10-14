@@ -40,7 +40,7 @@ export class UserManagementService {
   }
 
   deleteUser(id: string): Observable<any> {
-    return this.http.delete(UrlKeys.REMOTE + "/" + + id);
+    return this.http.delete(UrlKeys.REMOTE + "/" + id);
   }
 
   getCurrentUser(): Observable<User> {
@@ -48,7 +48,7 @@ export class UserManagementService {
     return this.http.get<User>(UrlKeys.REMOTE + "/" + this.userId);
   }
 
-  getUser(id: number): Observable<User> {
+  getUser(id: string): Observable<User> {
     return this.http.get<User>(UrlKeys.REMOTE + "/" + id);
   }
 

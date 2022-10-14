@@ -6,7 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { User } from '../../models/user.model';
 import { UserManagementService } from '../../services/user-management.service';
-import { ConfirmDialogComponent } from '../edit-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from '../dialog-components/confirm-dialog.component';
 
 @Component({
   selector: 'manage-users-component',

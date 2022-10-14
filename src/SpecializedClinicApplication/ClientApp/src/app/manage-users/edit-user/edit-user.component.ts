@@ -22,7 +22,7 @@ export class EditUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.reactiveForm();
-    this.userService.getUser(parseInt(this.route.snapshot.paramMap.get('id')!)).subscribe(res => {
+    this.userService.getUser(this.route.snapshot.paramMap.get('id')!).subscribe(res => {
       this.user = res;
       this.myForm.patchValue({
         userName: this.user.userName,

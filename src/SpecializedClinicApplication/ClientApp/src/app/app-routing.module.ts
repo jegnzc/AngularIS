@@ -19,7 +19,7 @@ const routes: Routes = [
           pathMatch: 'full',
           component: SettingsComponent
         },
-        { path: 'logout', pathMatch: 'full', component: EditUserComponent },
+        { path: 'logout', pathMatch: 'full', component: LogoutComponent },
         { path: 'user', pathMatch: 'full', component: ManageUsersComponent },
         { path: 'user/edit/:id', pathMatch: 'full', component: EditUserComponent },
         { path: 'user/add', pathMatch: 'full', component: AddUserComponent },

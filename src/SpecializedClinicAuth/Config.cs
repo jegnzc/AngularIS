@@ -117,14 +117,14 @@ public static class Config
         new List<ApplicationUser>
         {
             new ApplicationUser(){
-                Id = Guid.NewGuid().ToString(),
+                Id = "4687114b-bf9a-4f03-85c2-7c4b04484956",
                 UserName = "alice",
                 Email = "AliceSmith@email.com",
                 EmailConfirmed = true,
                 FavoriteColor = "green",
             },
             new ApplicationUser(){
-                Id = Guid.NewGuid().ToString(),
+                Id = "7cf2693f-f61d-4c57-ac61-90e51010f281",
                 UserName = "bob",
                 Email = "BobSmith@email.com",
                 EmailConfirmed = true,
@@ -153,12 +153,12 @@ public static class Config
             new IdentityUserRole<string>()
             {
                 RoleId = "1",
-                UserId = "1"
+                UserId = "4687114b-bf9a-4f03-85c2-7c4b04484956"
             },
             new IdentityUserRole<string>()
             {
                 RoleId = "1",
-                UserId = "2"
+                UserId = "7cf2693f-f61d-4c57-ac61-90e51010f281"
             }
         };
 }
