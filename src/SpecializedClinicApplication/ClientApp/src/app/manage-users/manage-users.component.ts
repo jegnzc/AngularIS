@@ -88,4 +88,8 @@ export class ManageUsersComponent implements OnInit {
   edit(user: User) {
     this.router.navigate(["/user/edit", user.id!]);
   }
+
+  goToAddUser() {
+    this.router.navigate(["/user/add"]);
+  }
 }

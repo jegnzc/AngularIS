@@ -1,13 +1,13 @@
 export class User {
 
-  constructor(id?: number, userName?: string, email?: string, role?: string) {
+  constructor(id?: string, userName?: string, email?: string, role?: string) {
     this.id = id;
     this.userName = userName;
     this.email = email;
     this.role = role;
   }
 
-  public id?: number;
+  public id?: string;
   public userName?: string;
   public email?: string;
   public role?: string;
@@ -27,17 +27,27 @@ export class UpdateUser {
   public userName?: string;
 }
 
+export class AddUser {
+  constructor(role?: string, email?: string, userName?: string) {
+    this.userName = userName;
+    this.email = email;
+    this.role = role;
+  }
+  public role?: string;
+  public email?: string;
+  public userName?: string;
+}
 
 export class UserEditModel {
 
-  constructor(id?: number, userName?: string, email?: string, role?: string) {
+  constructor(id?: string, userName?: string, email?: string, role?: string) {
     this.id = id;
     this.userName = userName;
     this.email = email;
     this.role = role;
   }
 
-  public id?: number;
+  public id?: string;
   public userName?: string;
   public email?: string;
   public role?: string;

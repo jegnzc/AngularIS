@@ -15,7 +15,6 @@ namespace SpecializedClinicAuth.Controllers
     [ApiController]
     [Route("user")]
     [Authorize(LocalApi.PolicyName)]
-    //[Authorize(Roles = "Administrador")]
     public class UserController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -34,9 +33,9 @@ namespace SpecializedClinicAuth.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<GetUserBasicDataResponse> Get(int id)
+        public async Task<GetUserBasicDataResponse> Get(string id)
         {
-            var user = await _userManager.FindByIdAsync(id.ToString());
+            var user = await _userManager.FindByIdAsync(id);
 
             var roles = await _userManager.GetRolesAsync(user);
 
@@ -66,9 +65,9 @@ namespace SpecializedClinicAuth.Controllers
         }
 
         [HttpPatch("{id}")]
-        public async Task<IActionResult> Patch(int id, [FromBody] UpdateUser request)
+        public async Task<IActionResult> Patch(string id, [FromBody] UpdateUser request)
         {
-            var user = await _userManager.FindByIdAsync(id.ToString());
+            var user = await _userManager.FindByIdAsync(id);
 
             var roles = await _userManager.GetRolesAsync(user);
 
@@ -79,10 +78,23 @@ namespace SpecializedClinicAuth.Controllers
             return Ok();
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        [HttpPost]
+        public async Task<IActionResult> Post(AddUser request)
         {
-            var user = await _userManager.FindByIdAsync(id.ToString());
+
+            var user = request.Adapt<ApplicationUser>();
+            var result = await _userManager.CreateAsync(user, request.Password);
+
+            if (result.Succeeded)
+                result = await _userManager.AddToRoleAsync(user, "Operador");
+
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
             await _userManager.DeleteAsync(user);
 
             return Ok();

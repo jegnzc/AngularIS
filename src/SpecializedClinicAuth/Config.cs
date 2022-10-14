@@ -117,14 +117,14 @@ public static class Config
         new List<ApplicationUser>
         {
             new ApplicationUser(){
-                Id = "1",
+                Id = Guid.NewGuid().ToString(),
                 UserName = "alice",
                 Email = "AliceSmith@email.com",
                 EmailConfirmed = true,
                 FavoriteColor = "green",
             },
             new ApplicationUser(){
-                Id = "2",
+                Id = Guid.NewGuid().ToString(),
                 UserName = "bob",
                 Email = "BobSmith@email.com",
                 EmailConfirmed = true,
@@ -137,11 +137,13 @@ public static class Config
         {
             new IdentityRole(){
                 Id = "1",
-                Name = "Administrador"
+                Name = "Administrador",
+                NormalizedName = "ADMINISTRADOR"
             },
             new IdentityRole(){
                 Id = "2",
-                Name = "Operador"
+                Name = "Operador",
+                NormalizedName = "OPERADOR"
             }
         };
 

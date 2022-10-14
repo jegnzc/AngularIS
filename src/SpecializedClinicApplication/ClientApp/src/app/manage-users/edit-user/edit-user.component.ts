@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User, UserEditModel } from '../../../models/user.model';
 import { UserManagementService } from '../../../services/user-management.service';
 
@@ -16,7 +16,8 @@ export class EditUserComponent implements OnInit {
   constructor(
     public fb: FormBuilder,
     public userService: UserManagementService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -50,7 +51,7 @@ export class EditUserComponent implements OnInit {
     console.log(this.myForm.value);
     this.myForm.value.id = this.route.snapshot.paramMap.get('id')!;
     this.userService.patchUser(this.myForm.value).subscribe(res => {
-      console.log("éxito al actualizar usuario");
+      this.router.navigate(["/user"]);
     });
   }
 }

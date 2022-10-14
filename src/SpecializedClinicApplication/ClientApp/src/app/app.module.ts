@@ -24,6 +24,7 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { ConfirmDialogComponent } from './edit-dialog/confirm-dialog.component';
 import { EditRowComponent } from './edit-row/edit-row.component';
 import { EditUserComponent } from './manage-users/edit-user/edit-user.component';
+import { AddUserComponent } from './manage-users/add-user/add-user.component';
 
 @NgModule({
   imports: [
@@ -48,7 +49,8 @@ import { EditUserComponent } from './manage-users/edit-user/edit-user.component'
     ManageUsersComponent,
     ConfirmDialogComponent,
     EditRowComponent,
-    EditUserComponent
+    EditUserComponent,
+    AddUserComponent
   ],
   providers: [AuthService, UserManagementService,
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }],
