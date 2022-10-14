@@ -121,6 +121,11 @@ internal static class HostingExtensions
                 foreach (var resource in Config.ApiScopes)
                     configContext.ApiScopes.Add(resource.ToEntity());
 
+            if (!context.Roles.Any())
+                foreach (var role in Config.Roles)
+                    context.Roles.Add(role);
+
+
             if (!context.Users.Any())
                 foreach (var user in Config.Users)
                 {
@@ -138,13 +143,10 @@ internal static class HostingExtensions
                     }
                 }
 
-            if (!context.Roles.Any())
-                foreach (var role in Config.Roles)
-                    context.Roles.Add(role);
-
             if (!context.UserRoles.Any())
                 foreach (var userRole in Config.UserRoles)
                     context.UserRoles.Add(userRole);
+
 
             configContext.SaveChanges();
             context.SaveChanges();

@@ -15,6 +15,7 @@ namespace SpecializedClinicAuth.Controllers
     [ApiController]
     [Route("user")]
     [Authorize(LocalApi.PolicyName)]
+    //[Authorize(Roles = "Administrador")]
     public class UserController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -64,14 +65,11 @@ namespace SpecializedClinicAuth.Controllers
             return userModels;
         }
 
-        [HttpPatch]
-        public async Task<IActionResult> Patch(UpdateUser request)
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> Patch(int id, [FromBody] UpdateUser request)
         {
-            var user = await _userManager.FindByIdAsync(request.UserId);
-            //var roleIdentity = User.Identities.ElementAt(1);
-            //var role = roleIdentity.Claims
-            //                .Where(c => c.Type == System.Security.Claims.ClaimTypes.Role)
-            //                .Select(c => c.Value).FirstOrDefault();
+            var user = await _userManager.FindByIdAsync(id.ToString());
+
             var roles = await _userManager.GetRolesAsync(user);
 
             await _userManager.RemoveFromRoleAsync(user, roles.FirstOrDefault());

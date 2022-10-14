@@ -150,7 +150,7 @@ public static class Config
         {
             new IdentityUserRole<string>()
             {
-                RoleId = "2",
+                RoleId = "1",
                 UserId = "1"
             },
             new IdentityUserRole<string>()

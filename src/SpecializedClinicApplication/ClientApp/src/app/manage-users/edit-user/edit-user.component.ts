@@ -48,5 +48,9 @@ export class EditUserComponent implements OnInit {
 
   submitForm() {
     console.log(this.myForm.value);
+    this.myForm.value.id = this.route.snapshot.paramMap.get('id')!;
+    this.userService.patchUser(this.myForm.value).subscribe(res => {
+      console.log("éxito al actualizar usuario");
+    });
   }
 }

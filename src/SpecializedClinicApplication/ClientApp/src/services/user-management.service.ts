@@ -32,7 +32,7 @@ export class UserManagementService {
   }
 
   patchUser(patchUser: UpdateUser): Observable<any> {
-    return this.http.post(UrlKeys.REMOTE, patchUser);
+    return this.http.patch(UrlKeys.REMOTE + "/" + patchUser.id, patchUser);
   }
 
   deleteUser(id: number): Observable<any> {

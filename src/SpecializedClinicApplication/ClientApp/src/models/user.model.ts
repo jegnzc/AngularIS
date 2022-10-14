@@ -15,13 +15,13 @@ export class User {
 }
 
 export class UpdateUser {
-  constructor(userId?: string, role?: string, email?: string, userName?: string) {
-    this.userId = userId;
+  constructor(id?: string, role?: string, email?: string, userName?: string) {
+    this.id = id;
     this.userName = userName;
     this.email = email;
     this.role = role;
   }
-  public userId?: string;
+  public id?: string;
   public role?: string;
   public email?: string;
   public userName?: string;
