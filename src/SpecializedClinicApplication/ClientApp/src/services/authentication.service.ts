@@ -21,6 +21,7 @@ const httpOptions = {
 
 @Injectable()
 export class AuthService {
+  user: User;
   userClaims: UserClaim[] = [];
   constructor(private http: HttpClient, private local: LocalService) { }
 
@@ -36,12 +37,13 @@ export class AuthService {
     return this.http.get<UserClaim[]>(BffKeys.USER, httpOptions)
       .pipe(
         map(response => {
-          return new User(
+          this.user = new User(
             response.find(x => x.type == UserClaimKeys.SUB)?.value!,
             response.find(x => x.type == UserClaimKeys.PREFERRED_USERNAME)?.value!,
             response.find(x => x.type == UserClaimKeys.EMAIL)?.value!,
             response.find(x => x.type == UserClaimKeys.ROLE)?.value!
           );
+          return this.user;
         }));
   }
 

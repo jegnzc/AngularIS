@@ -9,6 +9,7 @@ import { SettingsComponent } from './settings/settings.component';
 
 //Guard
 import { AuthGuard } from './shared/auth.guard';
+import { AuthorizeGuard } from './shared/authorize.guard';
 
 const routes: Routes = [
   {
@@ -20,9 +21,11 @@ const routes: Routes = [
           component: SettingsComponent
         },
         { path: 'logout', pathMatch: 'full', component: LogoutComponent },
-        { path: 'user', pathMatch: 'full', component: ManageUsersComponent },
-        { path: 'user/edit/:id', pathMatch: 'full', component: EditUserComponent },
-        { path: 'user/add', pathMatch: 'full', component: AddUserComponent },
+        {
+          path: 'user', pathMatch: 'full', component: ManageUsersComponent, canActivate: [AuthorizeGuard], 
+        },
+        { path: 'user/edit/:id', pathMatch: 'full', component: EditUserComponent, canActivate: [AuthorizeGuard] },
+        { path: 'user/add', pathMatch: 'full', component: AddUserComponent, canActivate: [AuthorizeGuard] },
       ]
   },
   { path: 'login', pathMatch: 'full', component: LoginComponent },
