@@ -5,6 +5,9 @@ import { LogoutComponent } from './logout/logout.component';
 import { AddUserComponent } from './manage-users/add-user/add-user.component';
 import { EditUserComponent } from './manage-users/edit-user/edit-user.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
+import { AddProductComponent } from './products/add-product/add-product.component';
+import { EditProductComponent } from './products/edit-product/edit-product.component';
+import { ManageProductsComponent } from './products/manage-products.component';
 import { SettingsComponent } from './settings/settings.component';
 
 //Guard
@@ -26,6 +29,11 @@ const routes: Routes = [
         },
         { path: 'user/edit/:id', pathMatch: 'full', component: EditUserComponent, canActivate: [AuthorizeGuard] },
         { path: 'user/add', pathMatch: 'full', component: AddUserComponent, canActivate: [AuthorizeGuard] },
+        {
+          path: 'product', pathMatch: 'full', component: ManageProductsComponent,
+        },
+        { path: 'product/edit/:id', pathMatch: 'full', component: EditProductComponent },
+        { path: 'product/add', pathMatch: 'full', component: AddProductComponent },
       ]
   },
   { path: 'login', pathMatch: 'full', component: LoginComponent },

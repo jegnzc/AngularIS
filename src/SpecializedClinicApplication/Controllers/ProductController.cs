@@ -16,7 +16,7 @@ namespace SpecializedClinicApplication.Controllers;
 //}
 [ApiController]
 [Authorize]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class ProductController : ControllerBase
 {
     [HttpGet]

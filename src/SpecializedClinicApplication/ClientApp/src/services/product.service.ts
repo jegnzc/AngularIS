@@ -8,11 +8,7 @@ import { LocalService } from './local.service';
 import { LocalKeys } from './local-keys';
 import { UrlKeys } from './url-keys';
 import { UserClaimKeys } from './claim-keys';
-
-export interface UserClaim {
-  type: string;
-  value: string;
-}
+import { AddProduct } from '../models/product.model';
 
 @Injectable()
 export class ProductService {
@@ -27,8 +23,8 @@ export class ProductService {
     return this.http.patch(UrlKeys.PRODUCT + "/" + patchUser.id, patchUser);
   }
 
-  addProduct(user: AddUser): Observable<any> {
-    return this.http.post(UrlKeys.PRODUCT, user);
+  addProduct(product: AddProduct): Observable<any> {
+    return this.http.post(UrlKeys.PRODUCT, product);
   }
 
   deleteProduct(id: string): Observable<any> {
