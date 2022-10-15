@@ -27,6 +27,18 @@
           <mat-radio-button value="Operador">Operador</mat-radio-button>
         </mat-radio-group>
       </p>
+      <p>
+        <mat-form-field>
+          <input matInput
+                 readonly
+                 [matDatepicker]="picker"
+                 placeholder="Date of birth"
+                 formControlName="dob"
+                 (dateChange)="date($event)" />
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </p>
       <!-- Submit -->
       <div class="button-wrapper">
         <button mat-flat-button color="primary">Confirmar</button>
