@@ -13,6 +13,9 @@ import { SettingsComponent } from './settings/settings.component';
 //Guard
 import { AuthGuard } from './shared/auth.guard';
 import { AuthorizeGuard } from './shared/authorize.guard';
+import { ManageClientsComponent } from './manage-clients/manage-clients.component';
+import { AddClientComponent } from './manage-clients/add-client/add-client.component';
+import { EditClientComponent } from './manage-clients/edit-client/edit-client.component';
 
 const routes: Routes = [
   {
@@ -34,6 +37,11 @@ const routes: Routes = [
         },
         { path: 'product/edit/:id', pathMatch: 'full', component: EditProductComponent },
         { path: 'product/add', pathMatch: 'full', component: AddProductComponent },
+        {
+          path: 'client', pathMatch: 'full', component: ManageClientsComponent,
+        },
+        { path: 'client/edit/:id', pathMatch: 'full', component: EditClientComponent },
+        { path: 'client/add', pathMatch: 'full', component: AddClientComponent },
       ]
   },
   { path: 'login', pathMatch: 'full', component: LoginComponent },
