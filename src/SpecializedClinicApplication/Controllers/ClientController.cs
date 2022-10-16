@@ -1,13 +1,15 @@
 using Mapster;
+using MapsterMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SpecializedClinicApplication.Data;
 using SpecializedClinicApplication.Data.Models.Inventory;
+using SpecializedClinicApplication.Model;
 
 namespace SpecializedClinicApplication.Controllers;
 
-
+[ApiController]
 [Authorize]
 [Route("api/[controller]")]
 public class ClientController : ControllerBase
@@ -37,19 +39,20 @@ public class ClientController : ControllerBase
     }
 
     [HttpPatch("{id}")]
-    public async Task<IActionResult> Patch(int id, [FromBody] Client request)
+    public async Task<IActionResult> Patch(int id, [FromBody] ClientModel request)
     {
         var client = await _context.Clients.FindAsync(id);
-        var newClient = (client, request).Adapt<Client>();
+        var newClient = request.Adapt(client);
         _context.Clients.Update(newClient);
         await _context.SaveChangesAsync();
         return Ok();
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post(Client request)
+    public async Task<IActionResult> Post(ClientModel request)
     {
-        await _context.Clients.AddAsync(request);
+        await _context.Clients.AddAsync(request.Adapt<Client>());
+        await _context.SaveChangesAsync();
 
         return Ok();
     }
@@ -59,6 +62,8 @@ public class ClientController : ControllerBase
     {
         var client = await _context.Clients.FindAsync(id);
         _context.Clients.Remove(client);
+        await _context.SaveChangesAsync();
+
         return Ok();
     }
 }

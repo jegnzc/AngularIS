@@ -40,9 +40,14 @@ namespace SpecializedClinicApplication.Data.Migrations.Business.ApplicationDb
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ServiceId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ClientId");
+
+                    b.HasIndex("ServiceId");
 
                     b.ToTable("Appointments");
                 });
@@ -99,6 +104,23 @@ namespace SpecializedClinicApplication.Data.Migrations.Business.ApplicationDb
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("SpecializedClinicApplication.Data.Models.Inventory.Service", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Services");
+                });
+
             modelBuilder.Entity("SpecializedClinicApplication.Data.Models.Inventory.Appointment", b =>
                 {
                     b.HasOne("SpecializedClinicApplication.Data.Models.Inventory.Client", "Client")
@@ -107,7 +129,15 @@ namespace SpecializedClinicApplication.Data.Migrations.Business.ApplicationDb
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("SpecializedClinicApplication.Data.Models.Inventory.Service", "Service")
+                        .WithMany()
+                        .HasForeignKey("ServiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Client");
+
+                    b.Navigation("Service");
                 });
 
             modelBuilder.Entity("SpecializedClinicApplication.Data.Models.Inventory.Client", b =>

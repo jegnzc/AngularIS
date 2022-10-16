@@ -9,9 +9,9 @@ const PROXY_CONFIG = [
   {
     context: [
       "/api/product",
-      "/test",
       "/api/client",
       "/api/inventory",
+      "/test",
       "/bff",
       "/signin-oidc",
       "/signout-callback-oidc",

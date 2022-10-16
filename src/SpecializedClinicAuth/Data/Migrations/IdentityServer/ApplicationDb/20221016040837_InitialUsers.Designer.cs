@@ -12,7 +12,7 @@ using SpecializedClinicAuth.Data;
 namespace SpecializedClinicAuth.Data.Migrations.IdentityServer.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221016003721_InitialUsers")]
+    [Migration("20221016040837_InitialUsers")]
     partial class InitialUsers
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

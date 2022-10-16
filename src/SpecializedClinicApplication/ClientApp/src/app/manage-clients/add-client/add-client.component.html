@@ -7,36 +7,34 @@
 
       <!-- Name -->
       <p>
-        <mat-label>Usuario: </mat-label>
+        <mat-label>Nombre: </mat-label>
         <mat-form-field>
-          <input matInput placeholder="Usuario" formControlName="userName" />
-          <mat-error *ngIf="myError('userName', 'required')">Usuario es requerido</mat-error>
+          <input matInput placeholder="Nombre" formControlName="name" />
+          <mat-error *ngIf="myError('name', 'required')">Nombre es requerido</mat-error>
         </mat-form-field>
       </p>
       <p>
-        <!-- Email -->
+        <mat-label>Dirección: </mat-label>
+        <mat-form-field>
+          <input matInput placeholder="Dirección" formControlName="address" />
+          <mat-error *ngIf="myError('address', 'required')">Dirección es requerida</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
         <mat-label>Correo: </mat-label>
         <mat-form-field>
-          <input matInput placeholder="Email" formControlName="email" />
-          <mat-error *ngIf="myError('email', 'required')">Correo es requerido</mat-error>
-          <mat-error *ngIf="myError('email', 'email')">Formato de correo inválido</mat-error>
+          <input matInput placeholder="Correo" formControlName="email" />
+          <mat-error *ngIf="myError('email', 'required')">Correo es requerida</mat-error>
+          <mat-error *ngIf="myError('email', 'email')">Formato de correo incorrecto</mat-error>
         </mat-form-field>
       </p>
+
       <p>
-        <!-- Contraseña -->
-        <mat-label>Contraseña: </mat-label>
+        <mat-label>Celular: </mat-label>
         <mat-form-field>
-          <input matInput placeholder="Contraseña" [type]="hide ? 'password' : 'text'" formControlName="password" required>
-          <mat-error *ngIf="myError('password', 'required')">Contraseña es requerida</mat-error>
+          <input matInput type="number" placeholder="Celular" formControlName="phoneNumber" />
+          <mat-error *ngIf="myError('phoneNumber', 'required')">Número es requerido</mat-error>
         </mat-form-field>
-      </p>
-      <!-- Gender -->
-      <p>
-        <mat-label>Rol: </mat-label>
-        <mat-radio-group aria-label="Role" formControlName="role">
-          <mat-radio-button value="Administrador">Administrador</mat-radio-button>
-          <mat-radio-button value="Operador">Operador</mat-radio-button>
-        </mat-radio-group>
       </p>
       <!-- Submit -->
       <div class="button-wrapper">

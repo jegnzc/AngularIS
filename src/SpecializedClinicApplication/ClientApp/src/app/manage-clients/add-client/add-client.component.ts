@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { User, UserEditModel } from '../../../models/user.model';
-import { UserManagementService } from '../../../services/user-management.service';
+import { Router } from '@angular/router';
+import { catchError } from 'rxjs';
+import { Client } from '../../../models/client.model';
+import { ClientManagementService } from '../../../services/client-management.service';
 
 @Component({
   selector: 'app-add-client',
@@ -11,11 +12,11 @@ import { UserManagementService } from '../../../services/user-management.service
 })
 export class AddClientComponent implements OnInit {
   myForm!: FormGroup;
-  hide = true;
+  client!: Client;
 
   constructor(
     public fb: FormBuilder,
-    public userService: UserManagementService,
+    public clientService: ClientManagementService,
     private router: Router
   ) { }
 
@@ -25,10 +26,10 @@ export class AddClientComponent implements OnInit {
 
   reactiveForm() {
     this.myForm = this.fb.group({
-      userName: [null, Validators.required],
+      name: [null, Validators.required],
+      address: [null, [Validators.required]],
       email: [null, [Validators.required, Validators.email]],
-      role: [null, Validators.required],
-      password: [null, Validators.required]
+      phoneNumber: [null, Validators.required],
     });
   }
 
@@ -37,6 +38,10 @@ export class AddClientComponent implements OnInit {
     this.myForm.get('dob')?.setValue(convertDate, {
       onlyself: true,
     });
+  }
+
+  public myError = (controlName: string, errorName: string) => {
+    return this.myForm.controls[controlName].hasError(errorName);
   }
 
   submitForm() {
@@ -50,14 +55,12 @@ export class AddClientComponent implements OnInit {
     });
 
     if (valid) {
-      this.userService.patchUser(this.myForm.value).subscribe(res => {
-        this.router.navigate(["/user"]);
+      this.clientService.addClient(this.myForm.value).subscribe(res => {
+        this.router.navigate(["/client"]);
       });
     }
   }
 
-  public myError = (controlName: string, errorName: string) => {
-    return this.myForm.controls[controlName].hasError(errorName);
-  }
+ 
 
 }

@@ -1,15 +1,17 @@
 export class Client {
 
-  constructor(id?: string, userName?: string, email?: string, role?: string) {
+  constructor(id?: number, name?: string, address?: string, email?: string, phoneNumber?: string) {
     this.id = id;
-    this.userName = userName;
+    this.name = name;
+    this.address = address;
     this.email = email;
-    this.role = role;
+    this.phoneNumber = phoneNumber;
   }
 
-  public id?: string;
-  public userName?: string;
-  public email?: string;
-  public role?: string;
+  public id?: number;
+  public name?: string;
+  public address?: string;
+  public email?: string;  
+  public phoneNumber?: string;
   public index?: number;
 }

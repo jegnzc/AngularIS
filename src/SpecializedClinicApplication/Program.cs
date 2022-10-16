@@ -1,12 +1,24 @@
 using Duende.Bff;
 using Duende.Bff.Yarp;
+using Mapster;
+using MapsterMapper;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 using SpecializedClinicApplication;
 using SpecializedClinicApplication.Data;
+using SpecializedClinicApplication.Data.Models.Inventory;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddControllersWithViews();
+
+builder.Host.UseSerilog((ctx, lc) => lc
+        .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}")
+        .Enrich.FromLogContext()
+        .ReadFrom.Configuration(ctx.Configuration));
+
+//builder.Services.AddControllersWithViews();
+builder.Services.AddControllers();
 
 var migrationsAssembly = typeof(Program).Assembly.GetName().Name;
 
@@ -69,6 +81,9 @@ builder.Services
     });
 
 var app = builder.Build();
+
+app.UseSerilogRequestLogging();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();

@@ -41,6 +41,19 @@ namespace SpecializedClinicApplication.Data.Migrations.Business.ApplicationDb
                 });
 
             migrationBuilder.CreateTable(
+                name: "Services",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Services", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Appointments",
                 columns: table => new
                 {
@@ -48,6 +61,7 @@ namespace SpecializedClinicApplication.Data.Migrations.Business.ApplicationDb
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Reason = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ClientId = table.Column<int>(type: "int", nullable: false),
+                    ServiceId = table.Column<int>(type: "int", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -59,12 +73,23 @@ namespace SpecializedClinicApplication.Data.Migrations.Business.ApplicationDb
                         principalTable: "Clients",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Appointments_Services_ServiceId",
+                        column: x => x.ServiceId,
+                        principalTable: "Services",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Appointments_ClientId",
                 table: "Appointments",
                 column: "ClientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Appointments_ServiceId",
+                table: "Appointments",
+                column: "ServiceId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -77,6 +102,9 @@ namespace SpecializedClinicApplication.Data.Migrations.Business.ApplicationDb
 
             migrationBuilder.DropTable(
                 name: "Clients");
+
+            migrationBuilder.DropTable(
+                name: "Services");
         }
     }
 }

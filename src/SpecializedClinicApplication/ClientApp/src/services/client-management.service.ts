@@ -10,22 +10,23 @@ export class ClientManagementService {
   }
 
   patchClient(client: Client): Observable<any> {
-    return this.http.patch(UrlKeys.REMOTE + "/" + client.id, client);
+    return this.http.patch(UrlKeys.CLIENT + "/" + client.id, client);
   }
 
-  addClient(client: Client): Observable<any> {
-    return this.http.post(UrlKeys.REMOTE, client);
+  addClient(client: Client): Observable<Client>
+  {
+    return this.http.post(UrlKeys.CLIENT, client);
   }
 
   deleteClient(id: number): Observable<any> {
-    return this.http.delete(UrlKeys.REMOTE + "/" + id);
+    return this.http.delete(UrlKeys.CLIENT + "/" + id);
   }
 
   getClient(id: number): Observable<Client> {
-    return this.http.get<Client>(UrlKeys.REMOTE + "/" + id);
+    return this.http.get<Client>(UrlKeys.CLIENT + "/" + id);
   }
 
   getAllClients(): Observable<Client[]> {
-    return this.http.get<Client[]>(UrlKeys.REMOTE);
+    return this.http.get<Client[]>(UrlKeys.CLIENT);
   }
 }

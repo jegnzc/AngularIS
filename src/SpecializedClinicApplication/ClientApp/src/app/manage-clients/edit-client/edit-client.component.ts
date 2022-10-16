@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User, UserEditModel } from '../../../models/user.model';
-import { UserManagementService } from '../../../services/user-management.service';
+import { ClientManagementService } from '../../../services/client-management.service';
 
 @Component({
   selector: 'edit-client',
@@ -11,32 +10,32 @@ import { UserManagementService } from '../../../services/user-management.service
 })
 export class EditClientComponent implements OnInit {
   myForm!: FormGroup;
-  user!: UserEditModel;
 
   constructor(
     public fb: FormBuilder,
-    public userService: UserManagementService,
+    public clientService: ClientManagementService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
 
   ngOnInit(): void {
     this.reactiveForm();
-    this.userService.getUser(this.route.snapshot.paramMap.get('id')!).subscribe(res => {
-      this.user = res;
+    this.clientService.getClient(parseInt(this.route.snapshot.paramMap.get('id')!)).subscribe(res => {
       this.myForm.patchValue({
-        userName: this.user.userName,
-        email: this.user.email,
-        role: this.user.role
+        name: res.name,
+        address: res.address,
+        email: res.email,
+        phoneNumber: res.phoneNumber
       })
     });
   }
 
   reactiveForm() {
     this.myForm = this.fb.group({
-      userName: [null, Validators.required],
+      name: [null, Validators.required],
+      address: [null, [Validators.required]],
       email: [null, [Validators.required, Validators.email]],
-      role: [null, Validators.required],
+      phoneNumber: [null, Validators.required],
     });
   }
 
@@ -59,8 +58,8 @@ export class EditClientComponent implements OnInit {
     });
 
     if (valid) {
-      this.userService.patchUser(this.myForm.value).subscribe(res => {
-        this.router.navigate(["/user"]);
+      this.clientService.patchClient(this.myForm.value).subscribe(res => {
+        this.router.navigate(["/client"]);
       });
     }
   }

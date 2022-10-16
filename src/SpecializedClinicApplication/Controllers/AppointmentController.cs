@@ -7,7 +7,7 @@ using SpecializedClinicApplication.Data.Models.Inventory;
 
 namespace SpecializedClinicApplication.Controllers;
 
-
+[ApiController]
 [Authorize]
 [Route("api/[controller]")]
 public class AppointmentController : ControllerBase
@@ -50,6 +50,7 @@ public class AppointmentController : ControllerBase
     public async Task<IActionResult> Post(Appointment request)
     {
         await _context.Appointments.AddAsync(request);
+        await _context.SaveChangesAsync();
 
         return Ok();
     }
@@ -59,6 +60,8 @@ public class AppointmentController : ControllerBase
     {
         var client = await _context.Appointments.FindAsync(id);
         _context.Appointments.Remove(client);
+        await _context.SaveChangesAsync();
+
         return Ok();
     }
 }

@@ -15,7 +15,7 @@ import { ConfirmDialogComponent } from '../dialog-components/confirm-dialog.comp
 })
 export class ManageClientsComponent implements OnInit {
   clients: Client[] = [];
-  displayedColumns: string[] = ['id', 'userName', 'email', 'role', 'actions'];
+  displayedColumns: string[] = ['id', 'name', 'address', 'email', 'phoneNumber', 'actions'];
 
   dataSource = new MatTableDataSource<Client>();
 
@@ -46,7 +46,7 @@ export class ManageClientsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       data => {
         if (data) {
-          this.clientService.deleteClient(parseInt(client.id!)).subscribe(result => {
+          this.clientService.deleteClient(client.id!).subscribe(result => {
             this.dataSource.data.splice(client.index!, 1);
             this.dataSource._updateChangeSubscription();
             this.dataSource.sort = this.sort;
@@ -77,7 +77,7 @@ export class ManageClientsComponent implements OnInit {
   }
 
   delete(client: Client) {
-    this.clientService.deleteClient(parseInt(client.id!)).subscribe(result => {
+    this.clientService.deleteClient(client.id!).subscribe(result => {
       this.dataSource.data.splice(client.index!, 1);
       this.dataSource._updateChangeSubscription();
       this.dataSource.sort = this.sort;
