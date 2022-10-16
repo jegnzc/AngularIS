@@ -1,0 +1,41 @@
+<div class="flex h-full">
+  <div class="m-auto p-10">
+
+    <!-- Form -->
+    <!-- Form -->
+    <form [formGroup]="myForm" (ngSubmit)="submitForm()" novalidate>
+      <h1 class="font-medium leading-tight text-5xl mt-0 mb-2 text-primary">Producto</h1>
+
+      <!-- Name -->
+      <p>
+        <mat-label>Nombre: </mat-label>
+        <mat-form-field>
+          <input matInput placeholder="Nombre" formControlName="name" />
+          <mat-error *ngIf="myError('name', 'required')">Nombre es requerido</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <!-- Email -->
+        <mat-label>Precio: </mat-label>
+        <mat-form-field>
+          <input matInput type="number" id="price" placeholder="Precio" formControlName="price" />
+          <mat-error *ngIf="myError('price', 'required')">Precio es requerido</mat-error>
+          <mat-error *ngIf="myError('price', 'min')">No se puede ingresar un número menor a 0</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <!-- Email -->
+        <mat-label>Cantidad: </mat-label>
+        <mat-form-field>
+          <input matInput type="number" id="quantity" placeholder="Cantidad" formControlName="quantity" />
+          <mat-error *ngIf="myError('quantity', 'required')">Cantidad es requerida</mat-error>
+          <mat-error *ngIf="myError('quantity', 'min')">No se puede ingresar un número menor a 0</mat-error>
+        </mat-form-field>
+      </p>
+      <!-- Submit -->
+      <div class="button-wrapper">
+        <button mat-flat-button color="primary">Confirmar</button>
+      </div>
+    </form>
+  </div>
+</div>

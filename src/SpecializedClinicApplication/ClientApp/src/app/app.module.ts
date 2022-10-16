@@ -25,9 +25,10 @@ import { ConfirmDialogComponent } from '../../src/app/dialog-components/confirm-
 import { EditRowComponent } from './edit-row/edit-row.component';
 import { EditUserComponent } from './manage-users/edit-user/edit-user.component';
 import { AddUserComponent } from './manage-users/add-user/add-user.component';
-import { ManageProductsComponent } from './products/manage-products.component';
-import { EditProductComponent } from './products/edit-product/edit-product.component';
-import { AddProductComponent } from './products/add-product/add-product.component';
+import { ManageProductsComponent } from './manage-products/manage-products.component';
+import { EditProductComponent } from './manage-products/edit-product/edit-product.component';
+import { AddProductComponent } from './manage-products/add-product/add-product.component';
+import { ProductService } from '../services/product.service';
 
 @NgModule({
   imports: [
@@ -58,7 +59,7 @@ import { AddProductComponent } from './products/add-product/add-product.componen
     AddUserComponent,
     AddProductComponent
   ],
-  providers: [AuthService, UserManagementService,
+  providers: [AuthService, UserManagementService, ProductService,
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }],
   bootstrap: [AppComponent],
   entryComponents: [ConfirmDialogComponent]

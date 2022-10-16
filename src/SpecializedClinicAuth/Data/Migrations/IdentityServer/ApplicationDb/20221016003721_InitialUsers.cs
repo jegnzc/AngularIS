@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace IdentityServer.Data.Migrations.IdentityServer.ApplicationDb
+namespace SpecializedClinicAuth.Data.Migrations.IdentityServer.ApplicationDb
 {
     public partial class InitialUsers : Migration
     {

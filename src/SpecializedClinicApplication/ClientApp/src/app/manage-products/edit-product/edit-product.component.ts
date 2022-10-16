@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Product } from '../../../models/product.model';
 import { User, UserEditModel } from '../../../models/user.model';
 import { ProductService } from '../../../services/product.service';
 import { UserManagementService } from '../../../services/user-management.service';
@@ -12,7 +13,7 @@ import { UserManagementService } from '../../../services/user-management.service
 })
 export class EditProductComponent implements OnInit {
   myForm!: FormGroup;
-  user!: UserEditModel;
+  product!: Product;
 
   constructor(
     public fb: FormBuilder,
@@ -23,21 +24,21 @@ export class EditProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.reactiveForm();
-    this.productService.getUser(this.route.snapshot.paramMap.get('id')!).subscribe(res => {
-      this.user = res;
+    this.productService.getProduct(parseInt(this.route.snapshot.paramMap.get('id')!)).subscribe(res => {
+      this.product = res;
       this.myForm.patchValue({
-        userName: this.user.userName,
-        email: this.user.email,
-        role: this.user.role
+        name: this.product.name,
+        price: this.product.price,
+        quantity: this.product.quantity
       })
     });
   }
 
   reactiveForm() {
     this.myForm = this.fb.group({
-      userName: ['', Validators.required],
-      email: ['', Validators.required],
-      role: ['', Validators.required],
+      name: [null, Validators.required],
+      price: [null, [Validators.required, Validators.min(0)]],
+      quantity: [null, Validators.required],
     });
   }
 
@@ -48,11 +49,26 @@ export class EditProductComponent implements OnInit {
     });
   }
 
+  public myError = (controlName: string, errorName: string) => {
+    return this.myForm.controls[controlName].hasError(errorName);
+  }
+
   submitForm() {
+    let valid = true;
     console.log(this.myForm.value);
     this.myForm.value.id = this.route.snapshot.paramMap.get('id')!;
-    this.productService.patchUser(this.myForm.value).subscribe(res => {
-      this.router.navigate(["/user"]);
+    Object.keys(this.myForm.controls).forEach(key => {
+      // Get errors of every form control
+      if (this.myForm.get(key)!.errors != null) {
+        valid = false;
+      }
     });
+
+    if (valid) {
+      this.productService.patchProduct(this.myForm.value).subscribe(res => {
+        this.router.navigate(["/product"]);
+      });
+    }
   }
+
 }

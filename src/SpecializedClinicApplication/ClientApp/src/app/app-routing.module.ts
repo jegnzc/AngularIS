@@ -5,9 +5,9 @@ import { LogoutComponent } from './logout/logout.component';
 import { AddUserComponent } from './manage-users/add-user/add-user.component';
 import { EditUserComponent } from './manage-users/edit-user/edit-user.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
-import { AddProductComponent } from './products/add-product/add-product.component';
-import { EditProductComponent } from './products/edit-product/edit-product.component';
-import { ManageProductsComponent } from './products/manage-products.component';
+import { AddProductComponent } from './manage-products/add-product/add-product.component';
+import { EditProductComponent } from './manage-products/edit-product/edit-product.component';
+import { ManageProductsComponent } from './manage-products/manage-products.component';
 import { SettingsComponent } from './settings/settings.component';
 
 //Guard

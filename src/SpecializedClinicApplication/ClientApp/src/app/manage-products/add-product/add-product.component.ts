@@ -12,7 +12,6 @@ import { UserManagementService } from '../../../services/user-management.service
 })
 export class AddProductComponent implements OnInit {
   myForm!: FormGroup;
-  user!: UserEditModel;
   hide = true;
 
   constructor(
@@ -27,10 +26,9 @@ export class AddProductComponent implements OnInit {
 
   reactiveForm() {
     this.myForm = this.fb.group({
-      userName: ['', Validators.required],
-      email: ['', Validators.required],
-      role: ['', Validators.required],
-      password: ['', Validators.required]
+      name: [null, Validators.required],
+      price: [null, [Validators.required, Validators.min(0)]],
+      quantity: [null, Validators.required],
     });
   }
 
@@ -41,10 +39,24 @@ export class AddProductComponent implements OnInit {
     });
   }
 
+  public myError = (controlName: string, errorName: string) => {
+    return this.myForm.controls[controlName].hasError(errorName);
+  }
+
   submitForm() {
+    let valid = true;
     console.log(this.myForm.value);
-    this.productService.addProduct(this.myForm.value).subscribe(res => {
-      this.router.navigate(["/product"]);
+    Object.keys(this.myForm.controls).forEach(key => {
+      // Get errors of every form control
+      if (this.myForm.get(key)!.errors != null) {
+        valid = false;
+      }
     });
+
+    if (valid) {
+      this.productService.addProduct(this.myForm.value).subscribe(res => {
+        this.router.navigate(["/product"]);
+      });
+    }
   }
 }

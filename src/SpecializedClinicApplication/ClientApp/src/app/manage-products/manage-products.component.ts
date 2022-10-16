@@ -4,9 +4,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { User } from '../../models/user.model';
+import { Product } from '../../models/product.model';
 import { ProductService } from '../../services/product.service';
-import { UserManagementService } from '../../services/user-management.service';
 import { ConfirmDialogComponent } from '../dialog-components/confirm-dialog.component';
 
 @Component({
@@ -15,10 +14,10 @@ import { ConfirmDialogComponent } from '../dialog-components/confirm-dialog.comp
   styleUrls: ['./manage-products.component.scss']
 })
 export class ManageProductsComponent implements OnInit {
-  users: User[] = [];
+  products: Product[] = [];
   displayedColumns: string[] = ['id', 'name', 'price', 'quantity', 'actions'];
-  //dataSource = new MatTableDataSource([...ELEMENT_DATA, ...ELEMENT_DATA]);
-  dataSource = new MatTableDataSource<User>();
+
+  dataSource = new MatTableDataSource<Product>();
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: false }) set matPaginator(paginator: MatPaginator) {
@@ -31,14 +30,14 @@ export class ManageProductsComponent implements OnInit {
     private router: Router
   ) { }
 
-  openDialog(user: User) {
+  openDialog(product: Product) {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
 
     dialogConfig.data = {
-      title: "Usuario",
+      title: "Producto",
       description: "Eliminar",
     };
 
@@ -47,8 +46,8 @@ export class ManageProductsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       data => {
         if (data) {
-          this.productService.deleteUser(user.id!).subscribe(result => {
-            this.dataSource.data.splice(user.index!, 1);
+          this.productService.deleteProduct(product.id!).subscribe(result => {
+            this.dataSource.data.splice(product.index!, 1);
             this.dataSource._updateChangeSubscription();
             this.dataSource.sort = this.sort;
             this.dataSource.paginator = this.matPaginator;
@@ -58,12 +57,12 @@ export class ManageProductsComponent implements OnInit {
     );
   }
   ngOnInit() {
-    this.productService.getAllUsers().subscribe(result => {
+    this.productService.getAllProducts().subscribe(result => {
       result.forEach(function (row, index) {
         row.index = index;
       });
-      this.users = result;
-      this.dataSource.data = this.users;
+      this.products = result;
+      this.dataSource.data = this.products;
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.matPaginator;
     });
@@ -77,20 +76,20 @@ export class ManageProductsComponent implements OnInit {
     this.dataSource.filter = value;
   }
 
-  delete(user: User) {
-    this.productService.deleteUser(user.id!).subscribe(result => {
-      this.dataSource.data.splice(user.index!, 1);
+  delete(product: Product) {
+    this.productService.deleteProduct(product.id!).subscribe(result => {
+      this.dataSource.data.splice(product.index!, 1);
       this.dataSource._updateChangeSubscription();
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.matPaginator;
     });
   }
 
-  edit(user: User) {
-    this.router.navigate(["/product/edit", user.id!]);
+  edit(product: Product) {
+    this.router.navigate(["/product/edit", product.id!]);
   }
 
-  goToAddUser() {
+  goToAddProduct() {
     this.router.navigate(["/product/add"]);
   }
 }

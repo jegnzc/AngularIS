@@ -10,11 +10,11 @@ namespace SpecializedClinicApplication.Controllers;
 
 [Authorize]
 [Route("api/[controller]")]
-public class ClientController : ControllerBase
+public class AppointmentController : ControllerBase
 {
     private readonly ApplicationDbContext _context;
 
-    public ClientController(
+    public AppointmentController(
         ApplicationDbContext context
         )
     {
@@ -24,7 +24,7 @@ public class ClientController : ControllerBase
     [HttpGet("{id}")]
     public async Task<IActionResult> Get(int id)
     {
-        var client = await _context.Clients.FindAsync(id);
+        var client = await _context.Appointments.FindAsync(id);
 
         return Ok(client);
     }
@@ -32,24 +32,24 @@ public class ClientController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> Get()
     {
-        var clients = await _context.Clients.ToListAsync();
+        var clients = await _context.Appointments.ToListAsync();
         return Ok(clients);
     }
 
     [HttpPatch("{id}")]
-    public async Task<IActionResult> Patch(int id, [FromBody] Client request)
+    public async Task<IActionResult> Patch(int id, [FromBody] Appointment request)
     {
-        var client = await _context.Clients.FindAsync(id);
-        var newClient = (client, request).Adapt<Client>();
-        _context.Clients.Update(newClient);
+        var client = await _context.Appointments.FindAsync(id);
+        var newAppointment = (client, request).Adapt<Appointment>();
+        _context.Appointments.Update(newAppointment);
         await _context.SaveChangesAsync();
         return Ok();
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post(Client request)
+    public async Task<IActionResult> Post(Appointment request)
     {
-        await _context.Clients.AddAsync(request);
+        await _context.Appointments.AddAsync(request);
 
         return Ok();
     }
@@ -57,8 +57,8 @@ public class ClientController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
-        var client = await _context.Clients.FindAsync(id);
-        _context.Clients.Remove(client);
+        var client = await _context.Appointments.FindAsync(id);
+        _context.Appointments.Remove(client);
         return Ok();
     }
 }

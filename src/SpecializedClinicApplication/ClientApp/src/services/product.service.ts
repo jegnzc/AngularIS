@@ -8,34 +8,33 @@ import { LocalService } from './local.service';
 import { LocalKeys } from './local-keys';
 import { UrlKeys } from './url-keys';
 import { UserClaimKeys } from './claim-keys';
-import { AddProduct } from '../models/product.model';
+import { Product } from '../models/product.model';
 
 @Injectable()
 export class ProductService {
-  userId!: string;
+
   constructor(
-    private http: HttpClient,
-    private local: LocalService
+    private http: HttpClient
   ) {
   }
 
-  patchProduct(patchUser: UpdateUser): Observable<any> {
+  patchProduct(patchUser: Product): Observable<any> {
     return this.http.patch(UrlKeys.PRODUCT + "/" + patchUser.id, patchUser);
   }
 
-  addProduct(product: AddProduct): Observable<any> {
+  addProduct(product: Product): Observable<any> {
     return this.http.post(UrlKeys.PRODUCT, product);
   }
 
-  deleteProduct(id: string): Observable<any> {
+  deleteProduct(id: number): Observable<any> {
     return this.http.delete(UrlKeys.PRODUCT + "/" + id);
   }
 
-  getProduct(id: string): Observable<User> {
-    return this.http.get<User>(UrlKeys.PRODUCT + "/" + id);
+  getProduct(id: number): Observable<Product> {
+    return this.http.get<Product>(UrlKeys.PRODUCT + "/" + id);
   }
 
-  getAllProducts(): Observable<User[]> {
-    return this.http.get<User[]>(UrlKeys.PRODUCT);
+  getAllProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(UrlKeys.PRODUCT);
   }
 }

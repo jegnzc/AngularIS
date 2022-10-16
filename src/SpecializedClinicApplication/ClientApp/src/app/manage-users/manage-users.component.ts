@@ -16,7 +16,7 @@ import { ConfirmDialogComponent } from '../dialog-components/confirm-dialog.comp
 export class ManageUsersComponent implements OnInit {
   users: User[] = [];
   displayedColumns: string[] = ['id', 'userName', 'email', 'role', 'actions'];
-  //dataSource = new MatTableDataSource([...ELEMENT_DATA, ...ELEMENT_DATA]);
+
   dataSource = new MatTableDataSource<User>();
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
