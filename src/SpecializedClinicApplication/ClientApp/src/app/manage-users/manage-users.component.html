@@ -7,7 +7,7 @@
         <input matInput (keyup)="applyFilter($event)" placeholder="Filtrar">
       </mat-form-field>
       <div class="button-wrapper">
-        <button mat-flat-button color="primary" (click)="goToAddUser()">Añadir nuevo usuario</button>
+        <button mat-raised-button class="primary" (click)="goToAddUser()">Añadir nuevo usuario</button>
       </div>
       <table mat-table matSort matTableResponsive [dataSource]="dataSource">
         <!--- Note that these columns can be defined in any order.
@@ -44,12 +44,8 @@
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef></th>
           <td mat-cell *matCellDef="let element">
-            <button mat-icon-button (click)="edit(element)">
-              <mat-icon color="primary">edit</mat-icon>
-            </button>
-            <button mat-icon-button (click)="openDialog(element)">
-              <mat-icon color="primary">delete</mat-icon>
-            </button>
+            <button mat-raised-button class="primary" (click)="edit(element)">Editar</button>
+            <button mat-raised-button class="warn" (click)="openDialog(element)">Eliminar</button>
           </td>
         </ng-container>
 

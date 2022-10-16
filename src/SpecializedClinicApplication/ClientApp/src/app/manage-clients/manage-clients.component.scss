@@ -5,3 +5,8 @@ table {
 .mat-column-actions {
   text-align: right;
 }
+
+
+.mat-raised-button:not(:last-child) {
+  margin-right: 10px;
+}
