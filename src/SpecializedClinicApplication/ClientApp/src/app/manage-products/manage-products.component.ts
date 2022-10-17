@@ -5,13 +5,15 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Product } from '../../models/product.model';
+import { fadeInOut } from '../../services/animations';
 import { ProductService } from '../../services/product.service';
 import { ConfirmDialogComponent } from '../dialog-components/confirm-dialog.component';
 
 @Component({
   selector: 'manage-products-component',
   templateUrl: './manage-products.component.html',
-  styleUrls: ['./manage-products.component.scss']
+  styleUrls: ['./manage-products.component.scss'],
+  animations: [fadeInOut]
 })
 export class ManageProductsComponent implements OnInit {
   products: Product[] = [];

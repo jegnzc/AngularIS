@@ -86,7 +86,7 @@ namespace SpecializedClinicAuth.Controllers
             var result = await _userManager.CreateAsync(user, request.Password);
 
             if (result.Succeeded)
-                result = await _userManager.AddToRoleAsync(user, "Operador");
+                result = await _userManager.AddToRoleAsync(user, request.Role);
 
             return Ok();
         }

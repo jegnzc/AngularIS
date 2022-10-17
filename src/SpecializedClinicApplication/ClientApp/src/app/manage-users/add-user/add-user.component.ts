@@ -29,13 +29,14 @@ export class AddUserComponent implements OnInit {
       userName: [null, Validators.required],
       email: [null, [Validators.required, Validators.email]],
       role: [null, Validators.required],
-      password: [null, Validators.required]
+      password: [null, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]
     });
   }
 
   date(e) {
-    var convertDate = new Date(e.target.value).toISOString().substring(0, 10);
-    this.myForm.get('dob')?.setValue(convertDate, {
+    var convertDate = new Date(e.target.value);
+    let convertedDate = convertDate.toJSON();
+    this.myForm.get('date')?.setValue(convertedDate, {
       onlyself: true,
     });
   }

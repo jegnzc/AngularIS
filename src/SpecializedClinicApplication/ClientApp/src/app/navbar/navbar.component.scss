@@ -1,3 +1,6 @@
 .example-spacer {
   flex: 1 1 auto;
 }
+.mat-raised-button:not(:last-child) {
+  margin-right: 10px;
+}

@@ -4,58 +4,59 @@
 
     <div class="container h-full w-full">
 
-      <mat-form-field>
+      <mat-form-field appearance="standard">
         <input matInput (keyup)="applyFilter($event)" placeholder="Filtrar">
       </mat-form-field>
       <div class="button-wrapper mb-6">
         <button mat-raised-button class="primary" (click)="goToAddProduct()">Añadir nuevo producto</button>
       </div>
-      <table mat-table matSort matTableResponsive [dataSource]="dataSource">
-        <!--- Note that these columns can be defined in any order.
+      <div [@fadeInOut]>
+        <table mat-table matSort matTableResponsive [dataSource]="dataSource">
+          <!--- Note that these columns can be defined in any order.
       The actual rendered columns are set as a property on the row definition" -->
-        <!-- Position Column -->
-        <ng-container matColumnDef="index">
-          <mat-header-cell *matHeaderCellDef> Index </mat-header-cell>
-          <mat-cell *matCellDef="let element">{{element.index}}</mat-cell>
-        </ng-container>
+          <!-- Position Column -->
+          <ng-container matColumnDef="index">
+            <mat-header-cell *matHeaderCellDef class="text-base"> Index </mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.index}}</mat-cell>
+          </ng-container>
 
-        <ng-container matColumnDef="id">
-          <th mat-header-cell mat-sort-header *matHeaderCellDef> Código </th>
-          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-        </ng-container>
+          <ng-container matColumnDef="id">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef class="text-base"> Código </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
 
-        <!-- Name Column -->
-        <ng-container matColumnDef="name">
-          <th mat-header-cell mat-sort-header *matHeaderCellDef> Nombre </th>
-          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-        </ng-container>
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef class="text-base"> Nombre </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
 
-        <!-- Weight Column -->
-        <ng-container matColumnDef="price">
-          <th mat-header-cell mat-sort-header *matHeaderCellDef> Precio </th>
-          <td mat-cell *matCellDef="let element"> {{element.price}} </td>
-        </ng-container>
+          <!-- Weight Column -->
+          <ng-container matColumnDef="price">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef class="text-base"> Precio </th>
+            <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+          </ng-container>
 
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="quantity">
-          <th mat-header-cell mat-sort-header *matHeaderCellDef> Cantidad </th>
-          <td mat-cell *matCellDef="let element"> {{element.quantity}}</td>
-        </ng-container>
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="quantity">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef class="text-base"> Cantidad </th>
+            <td mat-cell *matCellDef="let element"> {{element.quantity}}</td>
+          </ng-container>
 
-        <ng-container matColumnDef="actions">
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let element">
-            <button mat-raised-button class="primary" (click)="edit(element)">Editar</button>
-            <button mat-raised-button class="warn" (click)="openDialog(element)">Eliminar</button>
-          </td>
-        </ng-container>
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-raised-button class="primary" (click)="edit(element)">Editar</button>
+              <button mat-raised-button class="warn" (click)="openDialog(element)">Eliminar</button>
+            </td>
+          </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-      <mat-paginator #paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator #paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        </div>
+      </div>
     </div>
-  </div>
 </div>
 

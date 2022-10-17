@@ -5,13 +5,15 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { User } from '../../models/user.model';
+import { fadeInOut } from '../../services/animations';
 import { UserManagementService } from '../../services/user-management.service';
 import { ConfirmDialogComponent } from '../dialog-components/confirm-dialog.component';
 
 @Component({
   selector: 'manage-users-component',
   templateUrl: './manage-users.component.html',
-  styleUrls: ['./manage-users.component.scss']
+  styleUrls: ['./manage-users.component.scss'],
+  animations: [fadeInOut]
 })
 export class ManageUsersComponent implements OnInit {
   users: User[] = [];

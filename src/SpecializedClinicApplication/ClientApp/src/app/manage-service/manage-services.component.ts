@@ -5,13 +5,15 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Service } from '../../models/service.model';
+import { fadeInOut} from '../../services/animations';
 import { ServiceManagementService } from '../../services/services-management.service';
 import { ConfirmDialogComponent } from '../dialog-components/confirm-dialog.component';
 
 @Component({
   selector: 'manage-services-component',
   templateUrl: './manage-services.component.html',
-  styleUrls: ['./manage-services.component.scss']
+  styleUrls: ['./manage-services.component.scss'],
+  animations: [fadeInOut]
 })
 export class ManageServicesComponent implements OnInit {
   services: Service[] = [];

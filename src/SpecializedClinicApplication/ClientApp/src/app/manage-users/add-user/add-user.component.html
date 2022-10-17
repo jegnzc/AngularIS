@@ -28,6 +28,7 @@
         <mat-form-field>
           <input matInput placeholder="Contraseña" [type]="hide ? 'password' : 'text'" formControlName="password" required>
           <mat-error *ngIf="myError('password', 'required')">Contraseña es requerida</mat-error>
+          <mat-error *ngIf="myError('password', 'pattern')">La contraseña no es suficientemente segura</mat-error>
         </mat-form-field>
       </p>
       <!-- Gender -->
@@ -45,3 +46,16 @@
     </form>
   </div>
 </div>
+
+
+<!-- Fecha -->
+<!--<mat-form-field class="ml-5">
+  <input matInput
+         readonly
+         [matDatepicker]="picker"
+         placeholder="Fecha"
+         formControlName="date"
+         (dateChange)="date($event)" />
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>-->

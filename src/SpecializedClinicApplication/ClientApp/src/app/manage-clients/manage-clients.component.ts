@@ -5,13 +5,15 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Client } from '../../models/client.model';
+import { fadeInOut } from '../../services/animations';
 import { ClientManagementService } from '../../services/client-management.service';
 import { ConfirmDialogComponent } from '../dialog-components/confirm-dialog.component';
 
 @Component({
   selector: 'manage-clients-component',
   templateUrl: './manage-clients.component.html',
-  styleUrls: ['./manage-clients.component.scss']
+  styleUrls: ['./manage-clients.component.scss'],
+  animations: [fadeInOut]
 })
 export class ManageClientsComponent implements OnInit {
   clients: Client[] = [];
