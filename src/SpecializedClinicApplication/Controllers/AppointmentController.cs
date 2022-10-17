@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SpecializedClinicApplication.Data;
 using SpecializedClinicApplication.Data.Models.Inventory;
+using SpecializedClinicApplication.Model;
 
 namespace SpecializedClinicApplication.Controllers;
 
@@ -24,32 +25,32 @@ public class AppointmentController : ControllerBase
     [HttpGet("{id}")]
     public async Task<IActionResult> Get(int id)
     {
-        var client = await _context.Appointments.FindAsync(id);
+        var appointment = await _context.Appointments.Include(x => x.Client).SingleAsync(x => x.Id == id);
 
-        return Ok(client);
+        return Ok(appointment.Adapt<ClientModel>());
     }
 
     [HttpGet]
     public async Task<IActionResult> Get()
     {
-        var clients = await _context.Appointments.ToListAsync();
-        return Ok(clients);
+        var appointments = await _context.Appointments.Include(x => x.Client).ToListAsync();
+        return Ok(appointments.Adapt<List<ClientModel>>());
     }
 
     [HttpPatch("{id}")]
-    public async Task<IActionResult> Patch(int id, [FromBody] Appointment request)
+    public async Task<IActionResult> Patch(int id, [FromBody] AppointmentModel request)
     {
-        var client = await _context.Appointments.FindAsync(id);
-        var newAppointment = (client, request).Adapt<Appointment>();
+        var appointment = await _context.Appointments.FindAsync(id);
+        var newAppointment = (appointment, request).Adapt<Appointment>();
         _context.Appointments.Update(newAppointment);
         await _context.SaveChangesAsync();
         return Ok();
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post(Appointment request)
+    public async Task<IActionResult> Post(AppointmentModel request)
     {
-        await _context.Appointments.AddAsync(request);
+        await _context.Appointments.AddAsync(request.Adapt<Appointment>());
         await _context.SaveChangesAsync();
 
         return Ok();
@@ -58,8 +59,8 @@ public class AppointmentController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
-        var client = await _context.Appointments.FindAsync(id);
-        _context.Appointments.Remove(client);
+        var appointment = await _context.Appointments.FindAsync(id);
+        _context.Appointments.Remove(appointment);
         await _context.SaveChangesAsync();
 
         return Ok();
