@@ -4,9 +4,9 @@
     <div class="container h-full w-full">
 
       <mat-form-field>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Filtrar">
+        <input matInput (keyup)="applyFilter($event)" placeholder="Filtrar" class="bg-white">
       </mat-form-field>
-      <div class="button-wrapper">
+      <div class="button-wrapper mb-6">
         <button mat-raised-button class="primary" (click)="goToAddClient()">Añadir nuevo cliente</button>
       </div>
       <table mat-table matSort matTableResponsive [dataSource]="dataSource">

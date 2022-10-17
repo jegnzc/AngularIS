@@ -75,6 +75,8 @@ $base-theme: mat.define-light-theme(( color: ( primary: $primary, accent: $accen
   .text-warn {
     color: mat-color($warn);
   }
+
+  
 }
 
 @import './app/mat-table-responsive/mat-table-responsive.directive';
@@ -100,4 +102,5 @@ body {
   background-size: cover;
   margin: 0;
 }
+
 

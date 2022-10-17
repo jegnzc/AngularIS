@@ -1,17 +1,18 @@
 <div class="flex h-full w-screen">
   <div class="m-auto p-10 container">
-    <h1 class="font-medium leading-tight text-5xl mt-0 mb-2 text-primary">Administración de productos</h1>
+    <h1 class="font-medium leading-tight text-5xl mt-0 mb-2 text-primary-shadow">Administración de productos</h1>
+
     <div class="container h-full w-full">
 
       <mat-form-field>
         <input matInput (keyup)="applyFilter($event)" placeholder="Filtrar">
       </mat-form-field>
-      <div class="button-wrapper">
+      <div class="button-wrapper mb-6">
         <button mat-raised-button class="primary" (click)="goToAddProduct()">Añadir nuevo producto</button>
       </div>
       <table mat-table matSort matTableResponsive [dataSource]="dataSource">
         <!--- Note that these columns can be defined in any order.
-    The actual rendered columns are set as a property on the row definition" -->
+      The actual rendered columns are set as a property on the row definition" -->
         <!-- Position Column -->
         <ng-container matColumnDef="index">
           <mat-header-cell *matHeaderCellDef> Index </mat-header-cell>

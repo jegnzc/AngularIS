@@ -11,39 +11,7 @@ table {
   margin-right: 10px;
 }
 
-mat-form-field .mat-form-field-wrapper .mat-form-field-flex {
+
+:host ::ng-deep .mat-form-field-flex {
   background-color: rgba(255, 255, 255, 0.5) !important;
-}
-
-mat-form-field {
-  color: pink !important;
-  background-color: pink !important;
-
-  .mat-form-field {
-    color: pink !important;
-    background-color: pink !important;
-  }
-
-  .mat-input-element {
-    color: pink !important;
-    background-color: pink !important;
-  }
-
-  .mat-form-field-label {
-    color: pink !important;
-    background-color: pink !important;
-  }
-
-  .mat-form-field-underline {
-    background-color: pink !important;
-  }
-
-  .mat-form-field-ripple {
-    background-color: pink !important;
-  }
-
-  .mat-form-field-required-marker {
-    color: pink !important;
-    background-color: pink !important;
-  }
 }
