@@ -33,6 +33,10 @@ import { ManageClientsComponent } from './manage-clients/manage-clients.componen
 import { EditClientComponent } from './manage-clients/edit-client/edit-client.component';
 import { AddClientComponent } from './manage-clients/add-client/add-client.component';
 import { ClientManagementService } from '../services/client-management.service';
+import { AddServiceComponent } from './manage-service/add-client/add-service.component';
+import { EditServiceComponent } from './manage-service/edit-client/edit-service.component';
+import { ManageServicesComponent } from './manage-service/manage-services.component';
+import { ServiceManagementService } from '../services/services-management.service';
 
 @NgModule({
   imports: [
@@ -57,16 +61,19 @@ import { ClientManagementService } from '../services/client-management.service';
     ManageUsersComponent,
     ManageProductsComponent,
     ManageClientsComponent,
+    ManageServicesComponent,
     ConfirmDialogComponent,
     EditRowComponent,
     EditUserComponent,
     EditProductComponent,
     EditClientComponent,
+    EditServiceComponent,
     AddUserComponent,
     AddProductComponent,
-    AddClientComponent
+    AddClientComponent,
+    AddServiceComponent
   ],
-  providers: [AuthService, UserManagementService, ProductService, ClientManagementService,
+  providers: [AuthService, UserManagementService, ProductService, ClientManagementService, ServiceManagementService,
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }],
   bootstrap: [AppComponent],
   entryComponents: [ConfirmDialogComponent]

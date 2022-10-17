@@ -16,6 +16,9 @@ import { AuthorizeGuard } from './shared/authorize.guard';
 import { ManageClientsComponent } from './manage-clients/manage-clients.component';
 import { AddClientComponent } from './manage-clients/add-client/add-client.component';
 import { EditClientComponent } from './manage-clients/edit-client/edit-client.component';
+import { ManageServicesComponent } from './manage-service/manage-services.component';
+import { AddServiceComponent } from './manage-service/add-client/add-service.component';
+import { EditServiceComponent } from './manage-service/edit-client/edit-service.component';
 
 const routes: Routes = [
   {
@@ -42,6 +45,11 @@ const routes: Routes = [
         },
         { path: 'client/edit/:id', pathMatch: 'full', component: EditClientComponent },
         { path: 'client/add', pathMatch: 'full', component: AddClientComponent },
+        {
+          path: 'service', pathMatch: 'full', component: ManageServicesComponent,
+        },
+        { path: 'service/edit/:id', pathMatch: 'full', component: EditServiceComponent },
+        { path: 'service/add', pathMatch: 'full', component: AddServiceComponent },
       ]
   },
   { path: 'login', pathMatch: 'full', component: LoginComponent },

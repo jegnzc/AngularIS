@@ -1,0 +1,18 @@
+<div class="flex h-full">
+  <div class="m-auto p-10">
+
+    <form [formGroup]="myForm" (ngSubmit)="submitForm()" novalidate>
+      <h1 class="font-medium leading-tight text-5xl mt-0 mb-2 text-blue-600">Datos</h1>
+      <p>
+        <mat-label>Nombre: </mat-label>
+        <mat-form-field>
+          <input matInput placeholder="Nombre" formControlName="name" />
+          <mat-error *ngIf="myError('name', 'required')">Nombre es requerido</mat-error>
+        </mat-form-field>
+      </p>
+      <div class="button-wrapper">
+        <button mat-flat-button color="primary">Confirmar</button>
+      </div>
+    </form>
+  </div>
+</div>
