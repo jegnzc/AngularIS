@@ -118,17 +118,17 @@ public static class Config
         {
             new ApplicationUser(){
                 Id = "4687114b-bf9a-4f03-85c2-7c4b04484956",
-                UserName = "alice",
-                Email = "AliceSmith@email.com",
+                UserName = "ernesto",
+                Email = "ernest@email.com",
                 EmailConfirmed = true,
-                FavoriteColor = "green",
+                FavoriteColor = "amarillo",
             },
             new ApplicationUser(){
                 Id = "7cf2693f-f61d-4c57-ac61-90e51010f281",
-                UserName = "bob",
-                Email = "BobSmith@email.com",
+                UserName = "jgonzalez",
+                Email = "jgonzalez@email.com",
                 EmailConfirmed = true,
-                FavoriteColor = "red",
+                FavoriteColor = "azul",
             }
         };
 

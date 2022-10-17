@@ -128,11 +128,11 @@ internal static class HostingExtensions
                 {
                     var result = userManager.CreateAsync(user, "Pass123$").Result;
                     result = userManager.AddClaimsAsync(user, new Claim[]{
-                            new Claim(JwtClaimTypes.Name, "Bob Smith"),
-                            new Claim(JwtClaimTypes.GivenName, user.UserName + " " + "Bob"),
-                            new Claim(JwtClaimTypes.FamilyName, user.UserName + " " + "Smith"),
-                            new Claim(JwtClaimTypes.WebSite, user.UserName + " " + "http://bob.com"),
-                            new Claim("location", user.UserName + " " + "somewhere")
+                            new Claim(JwtClaimTypes.Name, "Jorge González"),
+                            new Claim(JwtClaimTypes.GivenName, user.UserName + " " + "Jorge"),
+                            new Claim(JwtClaimTypes.FamilyName, user.UserName + " " + "González"),
+                            new Claim(JwtClaimTypes.WebSite, user.UserName + " " + "http://jorge.com"),
+                            new Claim("location", user.UserName + " " + "en Guatemala")
                         }).Result;
                     if (!result.Succeeded)
                     {
