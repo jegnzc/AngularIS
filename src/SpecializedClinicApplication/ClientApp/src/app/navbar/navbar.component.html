@@ -13,6 +13,7 @@
       <button mat-raised-button routerLink="/client">Clientes</button>
       <button mat-raised-button routerLink="/product">Productos</button>
       <button mat-raised-button routerLink="/service">Servicios</button>
+      <button mat-raised-button routerLink="/appointment">Citas</button>
       <button mat-raised-button routerLink="/user">Usuarios</button>
       <button mat-raised-button routerLink="/logout">Cerrar sesión</button>
     </ng-container>
@@ -26,6 +27,7 @@
   <button mat-menu-item routerLink="/client">Clientes</button>
   <button mat-menu-item routerLink="/product">Productos</button>
   <button mat-menu-item routerLink="/service">Servicios</button>
+  <button mat-menu-item routerLink="/appointment">Citas</button>
   <button mat-menu-item routerLink="/">Inventario</button>
   <ng-container *ngIf="user$ | async; let user">
     <button mat-menu-item routerLink="/settings">{{user.userName}}</button>

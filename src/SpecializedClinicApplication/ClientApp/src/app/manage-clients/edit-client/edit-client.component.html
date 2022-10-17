@@ -4,10 +4,10 @@
     <form [formGroup]="myForm" (ngSubmit)="submitForm()" novalidate>
       <h1 class="font-medium leading-tight text-5xl mt-0 mb-2 text-blue-600">Datos</h1>
       <p>
-        <mat-label>Nombre: </mat-label>
+        <mat-label>Razón: </mat-label>
         <mat-form-field>
-          <input matInput placeholder="Nombre" formControlName="name" />
-          <mat-error *ngIf="myError('name', 'required')">Nombre es requerido</mat-error>
+          <input matInput placeholder="Razón" formControlName="reason" />
+          <mat-error *ngIf="myError('name', 'required')">Razón es requerida</mat-error>
         </mat-form-field>
       </p>
       <p>

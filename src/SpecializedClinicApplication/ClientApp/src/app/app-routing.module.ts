@@ -19,6 +19,9 @@ import { EditClientComponent } from './manage-clients/edit-client/edit-client.co
 import { ManageServicesComponent } from './manage-service/manage-services.component';
 import { AddServiceComponent } from './manage-service/add-client/add-service.component';
 import { EditServiceComponent } from './manage-service/edit-client/edit-service.component';
+import { ManageAppointmentsComponent } from './manage-appointments/manage-appointments.component';
+import { EditAppointmentComponent } from './manage-appointments/edit-appointment/edit-appointment.component';
+import { AddAppointmentComponent } from './manage-appointments/add-appointment/add-appointment.component';
 
 const routes: Routes = [
   {
@@ -50,6 +53,11 @@ const routes: Routes = [
         },
         { path: 'service/edit/:id', pathMatch: 'full', component: EditServiceComponent },
         { path: 'service/add', pathMatch: 'full', component: AddServiceComponent },
+        {
+          path: 'appointment', pathMatch: 'full', component: ManageAppointmentsComponent,
+        },
+        { path: 'appointment/edit/:id', pathMatch: 'full', component: EditAppointmentComponent },
+        { path: 'appointment/add', pathMatch: 'full', component: AddAppointmentComponent },
       ]
   },
   { path: 'login', pathMatch: 'full', component: LoginComponent },

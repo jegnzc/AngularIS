@@ -25,16 +25,19 @@ public class AppointmentController : ControllerBase
     [HttpGet("{id}")]
     public async Task<IActionResult> Get(int id)
     {
-        var appointment = await _context.Appointments.Include(x => x.Client).SingleAsync(x => x.Id == id);
-
-        return Ok(appointment.Adapt<ClientModel>());
+        var appointment = await _context.Appointments.Include(x => x.Client)
+            .Include(x => x.Service)
+            .SingleAsync(x => x.Id == id);
+        return Ok(appointment.Adapt<AppointmentModel>());
     }
 
     [HttpGet]
     public async Task<IActionResult> Get()
     {
-        var appointments = await _context.Appointments.Include(x => x.Client).ToListAsync();
-        return Ok(appointments.Adapt<List<ClientModel>>());
+        var appointments = await _context.Appointments.Include(x => x.Client)
+            .Include(x=>x.Service).
+            ToListAsync();
+        return Ok(appointments.Adapt<List<AppointmentModel>>());
     }
 
     [HttpPatch("{id}")]
