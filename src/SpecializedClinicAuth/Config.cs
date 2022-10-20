@@ -81,9 +81,11 @@ public static class Config
                 //AllowedCorsOrigins = new string[] {"https://localhost:5003", "https://localhost:5004"},
 
                 // where to redirect to after login
-                RedirectUris = { "https://localhost:5004/signin-oidc" },
+                //RedirectUris = { "https://localhost:5004/signin-oidc" }, local
+                RedirectUris = { "https://specializedclinicapplication20221019232028.azurewebsites.net/signin-oidc" },
                 // where to redirect to after logout
-                PostLogoutRedirectUris = { "https://localhost:5004/signout-callback-oidc" },
+                //PostLogoutRedirectUris = { "https://localhost:5004/signout-callback-oidc" },
+                PostLogoutRedirectUris = { "https://specializedclinicapplication20221019232028.azurewebsites.net/signout-callback-oidc" },
 
                 AllowedScopes = new List<string>
                 {

@@ -29,6 +29,18 @@ export class AuthService {
     window.location.href = BffKeys.LOGIN;
   }
 
+
+  logout() {
+    this.userClaims = this.local.getJsonData(LocalKeys.USER);
+    let logoutUrl = this.userClaims.find(x => x.type == UserClaimKeys.LOGOUT_URL)?.value!;
+    this.userClaims = [];
+    this.local.clearData();
+    if (this.userClaims) {
+      window.location.href = logoutUrl;
+    } else {
+      window.location.href = BffKeys.LOGOUT;
+    }
+  }
   getUserData(): Observable<UserClaim[]> {
     return this.http.get<UserClaim[]>(BffKeys.USER, httpOptions);
   }
@@ -45,18 +57,6 @@ export class AuthService {
           );
           return this.user;
         }));
-  }
-
-  logout() {
-    this.userClaims = this.local.getJsonData(LocalKeys.USER);
-    let logoutUrl = this.userClaims.find(x => x.type == UserClaimKeys.LOGOUT_URL)?.value!;
-    this.userClaims = [];
-    this.local.clearData();
-    if (this.userClaims) {
-      window.location.href = logoutUrl;
-    } else {
-      window.location.href = BffKeys.LOGOUT;
-    }
   }
 
   // local storage

@@ -22,9 +22,9 @@ builder.Services.AddControllers();
 
 var migrationsAssembly = typeof(Program).Assembly.GetName().Name;
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection2");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection2")));
 
 builder.Services.AddAuthorization();
 
@@ -45,7 +45,8 @@ builder.Services
         options.Cookie.SameSite = SameSiteMode.Strict;
     }).AddOpenIdConnect("oidc", options =>
     {
-        options.Authority = "https://localhost:5001";
+        //options.Authority = "https://localhost:5001";
+        options.Authority = "https://specializedclinicauth20221020002602.azurewebsites.net";
         options.ClientId = "bff";
         options.ClientSecret = "secret";
         options.ResponseType = "code";
@@ -80,6 +81,8 @@ builder.Services
         };
     });
 
+builder.Services.AddRazorPages();
+
 var app = builder.Build();
 
 app.UseSerilogRequestLogging();
@@ -108,6 +111,7 @@ app.UseEndpoints(endpoints =>
 
     endpoints.MapRemoteBffApiEndpoint("/remote", "https://localhost:5001", false)
         .RequireAccessToken(TokenType.User);
+    app.MapRazorPages();
 
     endpoints.MapFallbackToFile("/index.html");
 });
