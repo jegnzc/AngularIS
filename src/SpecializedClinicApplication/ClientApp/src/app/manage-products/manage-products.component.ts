@@ -63,10 +63,8 @@ export class ManageProductsComponent implements OnInit {
       result.forEach(function (row, index) {
         row.index = index;
       });
-      this.products = result;
-      this.dataSource.data = this.products;
-      this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.matPaginator;
+      this.dataSource = new MatTableDataSource<Product>(result);
+
     });
   }
 

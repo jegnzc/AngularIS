@@ -39,7 +39,7 @@ export class ManageClientsComponent implements OnInit {
     dialogConfig.autoFocus = true;
 
     dialogConfig.data = {
-      title: "Usuario",
+      title: "Adinistración de clientes",
       description: "Eliminar",
     };
 
@@ -51,8 +51,8 @@ export class ManageClientsComponent implements OnInit {
           this.clientService.deleteClient(client.id!).subscribe(result => {
             this.dataSource.data.splice(client.index!, 1);
             this.dataSource._updateChangeSubscription();
-            this.dataSource.sort = this.sort;
             this.dataSource.paginator = this.matPaginator;
+            this.dataSource.sort = this.sort;
           });
         }
       }
@@ -65,8 +65,8 @@ export class ManageClientsComponent implements OnInit {
       });
       this.clients = result;
       this.dataSource.data = this.clients;
-      this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.matPaginator;
+      this.dataSource.sort = this.sort;
     });
   }
 
@@ -82,8 +82,8 @@ export class ManageClientsComponent implements OnInit {
     this.clientService.deleteClient(client.id!).subscribe(result => {
       this.dataSource.data.splice(client.index!, 1);
       this.dataSource._updateChangeSubscription();
-      this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.matPaginator;
+      this.dataSource.sort = this.sort;
     });
   }
 

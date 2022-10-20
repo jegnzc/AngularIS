@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
@@ -17,6 +17,7 @@ import { ConfirmDialogComponent } from '../dialog-components/confirm-dialog.comp
 })
 export class ManageServicesComponent implements OnInit {
   services: Service[] = [];
+  paginatorServices: Service[] = [];
   displayedColumns: string[] = ['id', 'name', 'actions'];
 
   dataSource = new MatTableDataSource<Service>();
@@ -31,6 +32,15 @@ export class ManageServicesComponent implements OnInit {
     private dialog: MatDialog,
     private router: Router
   ) { }
+
+  onPageChange(event: PageEvent) {
+    const startIndex = event.pageIndex * event.pageSize;
+    let endIndex = startIndex + event.pageSize;
+    if (endIndex > this.paginatorServices.length) {
+      endIndex = this.paginatorServices.length;
+    }
+    this.dataSource.data = this.paginatorServices.slice(startIndex, endIndex);
+  }
 
   openDialog(service: Service) {
     const dialogConfig = new MatDialogConfig();
@@ -60,10 +70,11 @@ export class ManageServicesComponent implements OnInit {
   }
   ngOnInit() {
     this.clinicServiceService.getAllServices().subscribe(result => {
+      this.paginatorServices = result;
+      this.services = this.paginatorServices.slice(0, 5);
       result.forEach(function (row, index) {
         row.index = index;
       });
-      this.services = result;
       this.dataSource.data = this.services;
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.matPaginator;
