@@ -43,7 +43,7 @@ public static class Config
 
                 AllowedGrantTypes = GrantTypes.Code,
 
-                //AllowedCorsOrigins = new string[] {"https://localhost:5003", "https://localhost:5004"},
+                AllowedCorsOrigins = new string[] { "https://specializedclinicapplication20221019232028.azurewebsites.net"},
 
                 // where to redirect to after login
                 //RedirectUris = { "https://localhost:5004/signin-oidc" }, local

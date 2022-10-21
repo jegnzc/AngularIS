@@ -19,18 +19,13 @@ builder.Host.UseSerilog((ctx, lc) => lc
         .Enrich.FromLogContext()
         .ReadFrom.Configuration(ctx.Configuration));
 
-//builder.Services.AddControllersWithViews();
 builder.Services.AddControllers();
-//builder.Services.AddSpaStaticFiles(configuration =>
-//{
-//    configuration.RootPath = "ClientApp/dist";
-//});
 
 var migrationsAssembly = typeof(Program).Assembly.GetName().Name;
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection2");
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection2")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddAuthorization();
 
@@ -87,7 +82,6 @@ builder.Services
         };
     });
 
-//builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
@@ -99,7 +93,6 @@ if (app.Environment.IsDevelopment())
 }
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-//app.UseSpaStaticFiles();
 
 app.UseAuthentication();
 app.UseRouting();
