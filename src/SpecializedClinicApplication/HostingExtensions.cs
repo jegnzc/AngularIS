@@ -22,11 +22,11 @@ namespace SpecializedClinicApplication
             {
                 var context = serviceScope.ServiceProvider.GetService<ApplicationDbContext>();
 
-                //context.Database.EnsureDeleted();
+                context.Database.EnsureDeleted();
 
-                //context.Database.Migrate();
+                context.Database.Migrate();
 
-                //context.SaveChanges();
+                context.SaveChanges();
             }
         }
     }

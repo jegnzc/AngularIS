@@ -52,7 +52,7 @@ export class AddUserComponent implements OnInit {
     });
 
     if (valid) {
-      this.userService.patchUser(this.myForm.value).subscribe(res => {
+      this.userService.addUser(this.myForm.value).subscribe(res => {
         this.router.navigate(["/user"]);
       });
     }
