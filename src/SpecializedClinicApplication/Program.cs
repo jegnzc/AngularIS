@@ -5,6 +5,7 @@ using MapsterMapper;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
+using Serilog.Sinks.RollingFileAlternate;
 using SpecializedClinicApplication;
 using SpecializedClinicApplication.Data;
 using SpecializedClinicApplication.Data.Models.Inventory;
@@ -14,11 +15,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.UseSerilog((ctx, lc) => lc
         .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}")
+        .WriteTo.RollingFileAlternate("log-{Date}.txt")
         .Enrich.FromLogContext()
         .ReadFrom.Configuration(ctx.Configuration));
 
 //builder.Services.AddControllersWithViews();
 builder.Services.AddControllers();
+//builder.Services.AddSpaStaticFiles(configuration =>
+//{
+//    configuration.RootPath = "ClientApp/dist";
+//});
 
 var migrationsAssembly = typeof(Program).Assembly.GetName().Name;
 
@@ -81,7 +87,7 @@ builder.Services
         };
     });
 
-builder.Services.AddRazorPages();
+//builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
@@ -93,6 +99,7 @@ if (app.Environment.IsDevelopment())
 }
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+//app.UseSpaStaticFiles();
 
 app.UseAuthentication();
 app.UseRouting();
@@ -109,9 +116,9 @@ app.UseEndpoints(endpoints =>
         .RequireAuthorization()
         .AsBffApiEndpoint(requireAntiForgeryCheck: false);
 
-    endpoints.MapRemoteBffApiEndpoint("/remote", "https://localhost:5001", false)
+    endpoints.MapRemoteBffApiEndpoint("/remote", "https://specializedclinicauth20221020002602.azurewebsites.net", false)
         .RequireAccessToken(TokenType.User);
-    app.MapRazorPages();
+    //app.MapRazorPages();
 
     endpoints.MapFallbackToFile("/index.html");
 });
