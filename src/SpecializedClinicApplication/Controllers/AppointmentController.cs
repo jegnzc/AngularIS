@@ -44,7 +44,7 @@ public class AppointmentController : ControllerBase
     public async Task<IActionResult> Patch(int id, [FromBody] AppointmentModel request)
     {
         var appointment = await _context.Appointments.FindAsync(id);
-        var newAppointment = (appointment, request).Adapt<Appointment>();
+        var newAppointment = request.Adapt(appointment);
         _context.Appointments.Update(newAppointment);
         await _context.SaveChangesAsync();
         return Ok();

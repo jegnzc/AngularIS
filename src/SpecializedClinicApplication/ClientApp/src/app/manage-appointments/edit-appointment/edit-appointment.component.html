@@ -8,7 +8,7 @@
         <mat-label>Razón: </mat-label>
         <mat-form-field>
           <input matInput placeholder="Razón" formControlName="reason" />
-          <mat-error *ngIf="myError('reason', 'required')">Nombre es requerido</mat-error>
+          <mat-error *ngIf="myError('reason', 'required')">Razón es requerida</mat-error>
         </mat-form-field>
       </p>
       <!-- Cliente -->
@@ -24,7 +24,7 @@
       </p>
       <!-- Cliente -->
       <p>
-        <mat-label>Cliente: </mat-label>
+        <mat-label>Servicio: </mat-label>
         <mat-form-field class="ml-2">
           <mat-select *ngIf="services$ | async; let services" formControlName="serviceId">
             <mat-option *ngFor="let service of services;" [value]="service.id">

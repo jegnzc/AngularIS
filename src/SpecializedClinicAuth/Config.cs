@@ -43,14 +43,14 @@ public static class Config
 
                 AllowedGrantTypes = GrantTypes.Code,
 
-                AllowedCorsOrigins = new string[] { "https://specializedclinicapplication20221019232028.azurewebsites.net"},
+                //AllowedCorsOrigins = new string[] { "https://specializedclinicapplication20221019232028.azurewebsites.net"},
 
                 // where to redirect to after login
-                //RedirectUris = { "https://localhost:5004/signin-oidc" }, local
-                RedirectUris = { "https://specializedclinicapplication20221019232028.azurewebsites.net/signin-oidc" },
+                RedirectUris = { "https://localhost:5004/signin-oidc" },
+                //RedirectUris = { "https://specializedclinicapplication20221019232028.azurewebsites.net/signin-oidc" },
                 // where to redirect to after logout
-                //PostLogoutRedirectUris = { "https://localhost:5004/signout-callback-oidc" },
-                PostLogoutRedirectUris = { "https://specializedclinicapplication20221019232028.azurewebsites.net/signout-callback-oidc" },
+                PostLogoutRedirectUris = { "https://localhost:5004/signout-callback-oidc" },
+                //PostLogoutRedirectUris = { "https://specializedclinicapplication20221019232028.azurewebsites.net/signout-callback-oidc" },
 
                 AllowedScopes = new List<string>
                 {

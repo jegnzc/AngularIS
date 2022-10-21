@@ -40,7 +40,7 @@ public class ProductController : ControllerBase
     public async Task<IActionResult> Patch(int id, [FromBody] Product request)
     {
         var product = await _context.Products.FindAsync(id);
-        var newProduct = (product, request).Adapt<Product>();
+        var newProduct = request.Adapt(product);
         _context.Products.Update(newProduct);
         await _context.SaveChangesAsync();
         return Ok();
