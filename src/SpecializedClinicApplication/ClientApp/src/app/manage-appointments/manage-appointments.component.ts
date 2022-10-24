@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
@@ -18,6 +18,7 @@ import { ConfirmDialogComponent } from '../dialog-components/confirm-dialog.comp
 export class ManageAppointmentsComponent implements OnInit {
   appointments: Appointment[] = [];
   displayedColumns: string[] = ['id', 'client', 'service', 'date', 'reason', 'actions'];
+  paginatorServices: Appointment[] = [];
 
   dataSource = new MatTableDataSource<Appointment>();
 
@@ -58,12 +59,22 @@ export class ManageAppointmentsComponent implements OnInit {
       }
     );
   }
+  onPageChange(event: PageEvent) {
+    const startIndex = event.pageIndex * event.pageSize;
+    let endIndex = startIndex + event.pageSize;
+    if (endIndex > this.paginatorServices.length) {
+      endIndex = this.paginatorServices.length;
+    }
+    this.dataSource.data = this.paginatorServices.slice(startIndex, endIndex);
+  }
+
   ngOnInit() {
     this.appointmentService.getAllAppointments().subscribe(result => {
+      this.paginatorServices = result;
+      this.appointments = this.paginatorServices.slice(0, 5);
       result.forEach(function (row, index) {
         row.index = index;
       });
-      this.appointments = result;
       this.dataSource.data = this.appointments;
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.matPaginator;

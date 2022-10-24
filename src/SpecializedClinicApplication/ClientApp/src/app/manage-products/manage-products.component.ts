@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
@@ -18,6 +18,7 @@ import { ConfirmDialogComponent } from '../dialog-components/confirm-dialog.comp
 export class ManageProductsComponent implements OnInit {
   products: Product[] = [];
   displayedColumns: string[] = ['id', 'name', 'price', 'quantity', 'actions'];
+  paginatorServices: Product[] = [];
 
   dataSource = new MatTableDataSource<Product>();
 
@@ -58,13 +59,26 @@ export class ManageProductsComponent implements OnInit {
       }
     );
   }
+
+  onPageChange(event: PageEvent) {
+    const startIndex = event.pageIndex * event.pageSize;
+    let endIndex = startIndex + event.pageSize;
+    if (endIndex > this.paginatorServices.length) {
+      endIndex = this.paginatorServices.length;
+    }
+    this.dataSource.data = this.paginatorServices.slice(startIndex, endIndex);
+  }
+
   ngOnInit() {
     this.productService.getAllProducts().subscribe(result => {
+      this.paginatorServices = result;
+      this.products = this.paginatorServices.slice(0, 5);
       result.forEach(function (row, index) {
         row.index = index;
       });
-      this.dataSource = new MatTableDataSource<Product>(result);
-
+      this.dataSource.data = this.products;
+      this.dataSource.paginator = this.matPaginator;
+      this.dataSource.sort = this.sort;
     });
   }
 
